@@ -1,0 +1,16 @@
+{
+"defeatedcrow.suzu":{
+    "category":"player",
+    "sounds":[
+      {
+        "name": "defeatedcrow:suzu",
+        "type": "sound",
+        "weight": 1,
+        "volume": 1,
+        "pitch":1,
+        "stream":false
+      }
+    ]
+  }
+
+}
