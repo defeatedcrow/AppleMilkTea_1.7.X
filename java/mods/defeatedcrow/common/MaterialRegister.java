@@ -2,13 +2,10 @@ package mods.defeatedcrow.common;
 
 import mods.defeatedcrow.common.block.*;
 import mods.defeatedcrow.common.item.*;
-import mods.defeatedcrow.potion.PotionImmunity;
-import mods.defeatedcrow.potion.PotionProtectionEX;
-import mods.defeatedcrow.potion.PotionReflex;
-import mods.defeatedcrow.potion.PotionSuffocation;
+import mods.defeatedcrow.potion.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.init.Blocks;
+import net.minecraft.init.*;
 import net.minecraft.item.ItemSeeds;
 import net.minecraft.potion.Potion;
 import net.minecraft.util.DamageSource;

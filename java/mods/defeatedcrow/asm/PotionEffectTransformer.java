@@ -7,7 +7,7 @@ import net.minecraft.launchwrapper.IClassTransformer;
 import org.objectweb.asm.*;
 
 /**
- * Created by A.K. on 14/07/07.
+ * Original code was created by A.K. on 14/07/07.
  */
 public class PotionEffectTransformer implements IClassTransformer, Opcodes {
 
