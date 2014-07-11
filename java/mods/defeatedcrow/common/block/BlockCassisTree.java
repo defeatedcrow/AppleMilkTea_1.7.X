@@ -115,21 +115,8 @@ public class BlockCassisTree extends Block implements IPlantable{
     		par1World.playSoundAtEntity(par5EntityPlayer, "random.pop", 0.4F, 1.8F);
     		return true;
         }
-        else //骨粉の成長イベント
+        else
         {
-//        	if ((itemstack.itemID == Item.dyePowder.itemID) && (itemstack.getItemDamage() == 15))
-//        	{
-//        		int newMeta = meta > 3 ? 7 : 3;
-//        		
-//        		if (!par5EntityPlayer.capabilities.isCreativeMode && --itemstack.stackSize <= 0)
-//                {
-//                    par5EntityPlayer.inventory.setInventorySlotContents(par5EntityPlayer.inventory.currentItem, (ItemStack)null);
-//                }
-//        		par1World.setBlockMetadataWithNotify(par2, par3, par4, newMeta, 3);
-//        		
-//        		par1World.playSoundAtEntity(par5EntityPlayer, "random.pop", 0.4F, 1.8F);
-//        		return true;
-//        	}
         	return false;
         }
     }
@@ -203,6 +190,7 @@ public class BlockCassisTree extends Block implements IPlantable{
 	{
 		this.leafIIcon = par1IIconRegister.registerIcon(Util.getTexturePassNoAlt() + "tealeaf");
 		this.logIIcon = par1IIconRegister.registerIcon(Util.getTexturePassNoAlt() + "tealog");
+		this.blockIcon = par1IIconRegister.registerIcon(Util.getTexturePassNoAlt() + "tealeaf");
 		
 		this.newleafIIcon = new IIcon[8];
 		for (int i = 0; i < 8; ++i)

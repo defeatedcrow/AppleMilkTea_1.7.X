@@ -199,14 +199,6 @@ public class BlockSaplingTea extends Block implements IPlantable
             this.saplingIcon[i] = par1IconRegister.registerIcon(Util.getTexturePassNoAlt() + "sapling_" + index[i]);
         }
     }
-    
-//    @SideOnly(Side.CLIENT)
-//	public void getSubBlocks(int par1, CreativeTabs par2CreativeTabs, List par3List)
-//    {
-//        par3List.add(new ItemStack(par1, 1, 0));
-//        par3List.add(new ItemStack(par1, 1, 1));
-//        par3List.add(new ItemStack(par1, 1, 2));
-//    }
 
 	@Override
 	public EnumPlantType getPlantType(IBlockAccess world, int x, int y, int z) {

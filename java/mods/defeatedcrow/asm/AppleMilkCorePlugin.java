@@ -2,7 +2,9 @@ package mods.defeatedcrow.asm;
 
 import java.io.File;
 import java.util.Map;
-import java.util.logging.Logger;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.relauncher.IFMLLoadingPlugin;
@@ -15,15 +17,20 @@ import mods.defeatedcrow.asm.config.*;
 public class AppleMilkCorePlugin implements IFMLLoadingPlugin {
 	
 	public static boolean allowLoad = true;
+	//前提MODの設定に伴い、当コアモッドの機能を禁止。
+	public static boolean forcedDisable = true;
+	
+	public static boolean dependenciesChecker = false;
 	public static int range = Byte.MAX_VALUE;
 	private final String BR = System.getProperty("line.separator");
 	
-    public static Logger logger = Logger.getLogger("AppleMilkCore");
+    public static Logger logger = LogManager.getLogger("AppleMilkCore");
     
     @Override
     public String[] getASMTransformerClass() {
         return new String[]{
-                "mods.defeatedcrow.asm.PotionArrayEXTransformer2"
+                "mods.defeatedcrow.asm.PotionArrayEXTransformer2",
+                "mods.defeatedcrow.asm.PotionEffectTransformer"
         };
     }
 
@@ -34,7 +41,7 @@ public class AppleMilkCorePlugin implements IFMLLoadingPlugin {
 
     @Override
     public String getSetupClass() {
-        return null;
+        return "mods.defeatedcrow.asm.DepLoader";
     }
 
     @Override
@@ -57,12 +64,12 @@ public class AppleMilkCorePlugin implements IFMLLoadingPlugin {
         		"Enable to load AppleMilkCore. If you want to disable AppleMilkCore, please set false."
     					+ BR +"(For example, for avoiding crash cause of conflict with MCPC+.)");
         PropertyDC b = config.get("general", "SetNewPotionIDRange", Byte.MAX_VALUE,
-        		"Set new potion ID maximum. It must be bigger than 32, and smaller than 256.");
+        		"Set new potion ID maximum. It must be bigger than 32, and smaller than 128.");
         
         allowLoad = a.getBoolean(true);
         range = b.getInt();
         if (range < 32) range = 32;
-        if (range > 256) range = 256;
+        if (range > 128) range = 128;
         
         config.save();
     }

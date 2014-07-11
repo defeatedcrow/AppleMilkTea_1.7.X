@@ -28,6 +28,13 @@ public class DCsBonemealEvent
 				event.setResult(Result.ALLOW);
 			}
 		}
+		else if (id == DCsAppleMilk.teaTree)
+		{
+			if(((BlockTeaTree)DCsAppleMilk.teaTree).fertilize(event.world, event.x, event.y, event.z))
+			{
+				event.setResult(Result.ALLOW);
+			}
+		}
 		else if (id == DCsAppleMilk.saplingTea)
 		{
 			if(((BlockSaplingTea)DCsAppleMilk.saplingTea).fertilize(event.world, event.x, event.y, event.z))

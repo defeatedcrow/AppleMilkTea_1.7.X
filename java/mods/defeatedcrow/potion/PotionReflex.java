@@ -48,14 +48,14 @@ public class PotionReflex extends PotionReflexBase{
 						//magic属性のダメージ
 						livingAttacker.attackEntityFrom(DamageSource.magic, amount*2);
 						//プレイヤーには鈴の音が聞こえる（暫定）
-						target.worldObj.playSoundAtEntity(target, "random.pop", 1.0F, 1.2F);
+						target.worldObj.playSoundAtEntity(target, "defeatedcrow:suzu", 1.0F, 1.2F);
 						succeed = true;
 					}
 					else
 					{
 						//生き物でない場合はとりあえずsetDead
 						attacker.setDead();
-						target.worldObj.playSoundAtEntity(target, "random.pop", 1.0F, 1.2F);
+						target.worldObj.playSoundAtEntity(target, "defeatedcrow:suzu", 1.0F, 1.2F);
 						succeed = true;
 					}
 				}

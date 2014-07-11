@@ -15,7 +15,7 @@ import org.lwjgl.opengl.GL11;
 @SideOnly(Side.CLIENT)
 public class RenderMelonBomb extends Render
 {
-    private static final ResourceLocation melonTextures = new ResourceLocation("applemilk:textures/entity/compressedmelon.png");
+    private static final ResourceLocation melonTextures = new ResourceLocation("defeatedcrow:textures/entity/compressedmelon.png");
 
     /** instance of ModelBoat for rendering */
     protected ModelMelonBomb modelMelonBomb;

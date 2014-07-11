@@ -231,13 +231,14 @@ public class BlockLargeBottle extends BlockContainer{
 	public void breakBlock(World par1World, int par2, int par3, int par4, Block par5, int par6)
     {
         TileLargeBottle tile = (TileLargeBottle)par1World.getTileEntity(par2, par3, par4);
+        int type = par1World.getBlockMetadata(par2, par3, par4);
 
         if (tile != null)
         {
         	//ブロックのメタデータとTileのShort値から新しいダメージ値を生成
         	short l = (short)(tile.getRemainShort());
-        	int type = par1World.getBlockMetadata(par2, par3, par4);
-        	int damage = (l << 4) + type;
+        	
+        	int damage = (l << 4) + par6;
         	
         	if (l >= 0 && l <= 5000)//上限については余り考えていない
             {

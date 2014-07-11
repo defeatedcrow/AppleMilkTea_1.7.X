@@ -94,6 +94,7 @@ public class BlockMelonBomb extends Block{
 		}
 	}
 	
+	@Override
 	public void onBlockPlacedBy(World par1World, int par2, int par3, int par4, EntityLivingBase par5EntityLivingBase, ItemStack par6ItemStack)
     {
 		if (!par1World.isRemote && !this.canMelonStay(par1World, par2, par3, par4))
@@ -103,7 +104,8 @@ public class BlockMelonBomb extends Block{
         }
     }
 	
-	public void onNeighborBlockChange(World par1World, int par2, int par3, int par4, int par5)
+	@Override
+	public void onNeighborBlockChange(World par1World, int par2, int par3, int par4, Block par5)
     {
 		if (!par1World.isRemote && !this.canMelonStay(par1World, par2, par3, par4))
         {

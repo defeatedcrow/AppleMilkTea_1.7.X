@@ -2,8 +2,8 @@
  * Copyright (c) defeatedcrow, 2013
  * URL:http://forum.minecraftuser.jp/viewtopic.php?f=13&t=17657
  *
- * Apple&Milk&Tea! is distributed under the terms of the Minecraft Mod PublicLicense 1.0, or MMPL.
- * Please check the Lisence(MMPL_1.0).txt included in the package file of this Mod.
+ * Apple&Milk&Tea! is distributed under the terms of the Minecraft Mod Public License 1.0, or MMPL.
+ * Please check the License(MMPL_1.0).txt included in the package file of this Mod.
  */
 
 package mods.defeatedcrow.common;
@@ -20,6 +20,7 @@ import mods.defeatedcrow.common.item.ItemGrater;
 import mods.defeatedcrow.event.*;
 import mods.defeatedcrow.handler.*;
 import mods.defeatedcrow.plugin.*;
+import mods.defeatedcrow.plugin.craftguide.LoadCraftGuidePlugin;
 import mods.defeatedcrow.handler.recipe.*;
 import mods.defeatedcrow.potion.*;
 import net.minecraft.block.Block;
@@ -52,10 +53,10 @@ import cpw.mods.fml.relauncher.SideOnly;
 @Mod(
 		modid = "DCsAppleMilk",
 		name = "Apple&Milk&Tea!",
-		version = "1.7.2_1.0_beta",
-		dependencies = "after:IC2;after:Thaumcraft;after:BambooMod;after:pamharvestcraft;after:Forestry"
+		version = "1.7.2_1.0a",
+		dependencies = "after:IC2;after:Thaumcraft;after:BambooMod;after:pamharvestcraft;after:Forestry;after:mod_ecru_MapleTree"
 		)
-
+//required-after:SampleCore;
 public class DCsAppleMilk{
 	
 	//プロキシの登録
@@ -163,6 +164,9 @@ public class DCsAppleMilk{
 	
 	//villager関連
 	public static VillagerCafe villager;
+	
+	//前提CoreModsの導入チェック
+	public static boolean RequiredCoreEnabled = false;
 
 	public static boolean SuccessLoadIC2 = false;
 	public static boolean SuccessLoadBamboo = false;
@@ -190,7 +194,7 @@ public class DCsAppleMilk{
 	public static boolean inClient = false;
 	public static boolean inServer = false;
 	public static boolean thirdParty = false;
-	public static boolean debugMode = false;
+	public static boolean debugMode = true;
 	public static boolean succeedAddPotion = false;
 	
 	//新ツール属性の追加
@@ -243,6 +247,9 @@ public class DCsAppleMilk{
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event)
 	{
+		
+		(new RequiredCoreModChecker()).coreModCheck();
+		
 		//Configuration setting
 		//コンフィグを生成する
 		Configuration cfg = new Configuration(event.getSuggestedConfigurationFile());
@@ -404,6 +411,11 @@ public class DCsAppleMilk{
 	
 	@EventHandler
     public void postInit(FMLPostInitializationEvent event) {
+		
+		if (debugMode)
+		{
+			(new LoadModHandler()).loadAppleMilk();
+		}
 		
 	    if (Loader.isModLoaded("IC2"))
 	    {
@@ -597,18 +609,18 @@ public class DCsAppleMilk{
 	        }
 	    }
 	    
-	    if (Loader.isModLoaded("mod_ecru_MapleTree_Forge"))
+	    if (Loader.isModLoaded("mod_ecru_MapleTree"))
 	    {
-	    	AMTLogger.loadingModInfo("mod_ecru_MapleTree_Forge");
+	    	AMTLogger.loadingModInfo("mod_ecru_MapleTree");
 	    	try
 	        {
 	          this.SuccessLoadMapleTree = true;
 	          (new LoadModHandler()).loadMaple();
-	          AMTLogger.loadedModInfo("mod_ecru_MapleTree_Forge");
+	          AMTLogger.loadedModInfo("mod_ecru_MapleTree");
 	          
 	        }
 	        catch (Exception e) {
-	        	AMTLogger.failLoadingModInfo("mod_ecru_MapleTree_Forge");
+	        	AMTLogger.failLoadingModInfo("mod_ecru_MapleTree");
 	          e.printStackTrace(System.err);
 	        }
 	    }
@@ -697,8 +709,27 @@ public class DCsAppleMilk{
 	    //他MODの水入り容器をひと通り取得した後に行うので、最後のほうで呼ぶ
 	    (new DCsRecipeRegister()).addInstantTea();
 	    
+	    //レシピ閲覧系MODの連携要素
 	    (new RegisteredRecipeGet()).setRecipeList();
+	    
+	    //NEIのみクライアントサイドで読み込む
 	    proxy.loadNEI();
+	    
+	    //CraftGuideへのレシピ登録
+	    if (Loader.isModLoaded("craftguide"))
+	    {
+	    	AMTLogger.loadingModInfo("craftguide");
+	    	try
+	        {
+	          this.SuccessLoadWa = true;
+	          (new LoadCraftGuidePlugin()).load();;
+	          AMTLogger.loadedModInfo("craftguide");
+	        }
+	        catch (Exception e) {
+	        	AMTLogger.failLoadingModInfo("craftguide");
+	          e.printStackTrace(System.err);
+	        }
+	    }
     }
 	
 }

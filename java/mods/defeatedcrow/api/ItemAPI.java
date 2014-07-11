@@ -54,10 +54,10 @@ public class ItemAPI {
 	 * (foods)
 	 * 
 	 * baked apple 					: bakedApple
-	 * apple tart 					: appleTart
+	 * apple tart 					: appleTart & apple:0, cassis:2
 	 * toffy apple (normal) 		: toffyApple
 	 * toffy apple (potion effect) 	: icyToffyApple	& icy:0, airy:1, golden:2, green:3
-	 * Sandwiches 					: appleSandWich & apple:0, egg:1
+	 * Sandwiches 					: appleSandWich & apple:0, egg:1, cassis:2
 	 * clam							: clam & raw:0, cooked:1
 	 * burnt meat					: clam & 2
 	 * black egg					: clam & 3 
@@ -68,14 +68,18 @@ public class ItemAPI {
 	 * 
 	 * (food materials)
 	 * 
-	 * raw tea leaves				: leafTea
+	 * raw tea leaves				: leafTea & tea:0
+	 * mint leaves                  : leaftea & 1
+	 * cassis berry                 : leaftea & 2
 	 * green tea leaves				: EXItems & 2
 	 * tea leaves					: EXItems & 3
 	 * oxidized tea leaves			: EXItems & 4
 	 * earl gray leaves				: EXItems & 8
 	 * apple tea leaves				: EXItems & 9
 	 * 
-	 * condensed milk				: condensedMilk
+	 * condensed milk				: condensedMilk & 0
+	 * cassis preserve              : condensedMilk & 1
+	 * mint sauce                   : condensedMilk & 2
 	 * ganache						: gratedApple & 4
 	 * crashed ice					: EXItems & 7
 	 * 
@@ -119,8 +123,9 @@ public class ItemAPI {
 	 * (containers)
 	 * 
 	 * log boxes					: woodBox & oak:0, spruce:1, birch:2, jungle:3, 
-	 * 											(IC2)rubber:4, (TC4)great wood:5, (TC4)silver wood:6
-	 *                                          (DartCraft)forceLog:7, (Bamboo)sakuraLog:8, (MapleTree)mapleLog:9, (SugiForest)sugiLog:10
+	 * 											(IC2)rubber:4, (TC4)great wood:5, (TC4)silver wood:6,
+	 *                                          (DartCraft)forceLog:7, (Bamboo)sakuraLog:8, (MapleTree)mapleLog:9, (SugiForest)sugiLog:10,
+	 *                                          darkoak:11, acacia:12
 	 * apple box					: appleBox
 	 * charcoal container			: charcoalContainer
 	 * another container			: gunpowderContainer & gunpowder:1, Kayaku:1, clay:2, clam:3
@@ -185,7 +190,7 @@ public class ItemAPI {
 	
 	private static final String packageName()
 	{
-		return "mods.applemilk.common.DCsAppleMilk";
+		return "mods.defeatedcrow.common.DCsAppleMilk";
 	}
 	
 	

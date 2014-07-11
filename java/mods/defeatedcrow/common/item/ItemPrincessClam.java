@@ -123,7 +123,7 @@ public class ItemPrincessClam extends Item {
 						
 						thisPlayer.setPositionAndUpdate(X, Y + 1, Z);
 						thisPlayer.fallDistance = 0.0F;
-						world.playSoundAtEntity(thisPlayer, "random.pop", 1.0F, 1.2F);
+						world.playSoundAtEntity(thisPlayer, "defeatedcrow:suzu", 1.0F, 1.2F);
 						return itemstack;
 	                }
 				}
@@ -174,7 +174,7 @@ public class ItemPrincessClam extends Item {
 								
 								thisPlayer.setPositionAndUpdate(x1, y1, z1);
 								thisPlayer.fallDistance = 0.0F;
-								world.playSoundAtEntity(thisPlayer, "random.pop", 1.0F, 1.2F);
+								world.playSoundAtEntity(thisPlayer, "defeatedcrow:suzu", 1.0F, 1.2F);
 								thisPlayer.addChatMessage(new ChatComponentText("Succeeded to warp near the registered player : " + target.getDisplayName()));
 								return itemstack;
 			                }
@@ -235,7 +235,7 @@ public class ItemPrincessClam extends Item {
 						
 						thisPlayer.setPositionAndUpdate(X, y1 + 1, Z);
 						thisPlayer.fallDistance = 0.0F;
-						world.playSoundAtEntity(thisPlayer, "random.pop", 1.0F, 1.2F);
+						world.playSoundAtEntity(thisPlayer, "defeatedcrow:suzu", 1.0F, 1.2F);
 						return itemstack;
 	                }
 				}
@@ -253,7 +253,7 @@ public class ItemPrincessClam extends Item {
 		if (world.canBlockSeeTheSky(X, Y + 1, Z))
 		{
 			Block block = world.getBlock(X, Y, Z);
-			if (block == Blocks.grass) flag = true;
+			if (block.getMaterial() == Material.grass) flag = true;
 			if (block.getMaterial() == Material.snow) flag = true;
 		}
 		return flag;

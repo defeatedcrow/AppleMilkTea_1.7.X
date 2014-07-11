@@ -63,6 +63,7 @@ public class BlockClamSand extends Block
         return 1;
     }
     
+    @Override
     public boolean onBlockActivated(World par1World, int par2, int par3, int par4, EntityPlayer par5EntityPlayer, int par6, float par7, float par8, float par9)
     {
         ItemStack itemstack = par5EntityPlayer.inventory.getCurrentItem();
@@ -117,6 +118,7 @@ public class BlockClamSand extends Block
         }
     }
     
+    @Override
     public void updateTick(World par1World, int par2, int par3, int par4, Random par5Random)
     {
     	//まずは確率1/20

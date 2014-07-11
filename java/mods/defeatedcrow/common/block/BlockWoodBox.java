@@ -19,7 +19,7 @@ import mods.defeatedcrow.handler.Util;
 public class BlockWoodBox extends Block{
 	
 	private static final String[] boxType = new String[] {"_oak", "_spruse", "_birch", "_jungle", "_rubber", "_great", "_silver",
-		"_force", "_sakura", "_momizi", "_JPcedar"};
+		"_force", "_sakura", "_momizi", "_JPcedar", "_darkoak", "_acacia"};
 	
 	@SideOnly(Side.CLIENT)
     private IIcon[] boxTex;
@@ -42,7 +42,7 @@ public class BlockWoodBox extends Block{
     public IIcon getIcon(int par1, int par2)
     { 
 		int i = par2;
-		if (i > 10) i = 10;
+		if (i > 12) i = 12;
 		if (par1 == 4 || par1 == 5)
         {
         	return this.boxSideTex[i];
@@ -68,6 +68,8 @@ public class BlockWoodBox extends Block{
         par3List.add(new ItemStack(par1, 1, 8));
         par3List.add(new ItemStack(par1, 1, 9));
         par3List.add(new ItemStack(par1, 1, 10));
+        par3List.add(new ItemStack(par1, 1, 11));
+        par3List.add(new ItemStack(par1, 1, 12));
     }
 	
 	@Override
@@ -80,10 +82,10 @@ public class BlockWoodBox extends Block{
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister par1IconRegister)
 	{
-		this.boxTex = new IIcon[11];
-		this.boxSideTex = new IIcon[11];
+		this.boxTex = new IIcon[13];
+		this.boxSideTex = new IIcon[13];
 		
-        for (int i = 0; i < 11; ++i)
+        for (int i = 0; i < 13; ++i)
         {
             this.boxTex[i] = par1IconRegister.registerIcon(Util.getTexturePassNoAlt() + "WoodBox" + boxType[i]);
             this.boxSideTex[i] = par1IconRegister.registerIcon(Util.getTexturePassNoAlt() + "WoodBoxside" + boxType[i]);

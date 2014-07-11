@@ -261,11 +261,10 @@ public class LoadModHandler {
 		
 		try
 		{
-			//Gameregistry.registerItem()を通していない場合FMLの機能が使えないため、仕方なしにリフレクションで殴っている
-			//Item item = Util.getModItem("mod_ecru_MapleTree_Forge", "mapletree:mapleSyrup");
-			Object obj = Class.forName("ecru.MapleTree.mod_ecru_MapleTree").getField("Item_mapleSyrup").get(null);
-			if (obj instanceof Item) {
-				ItemStack registerItem = new ItemStack((Item)obj, 1, 0);
+			Item item = Util.getModItem("mod_ecru_MapleTree", "mapleSyrup");
+//			Object obj = Class.forName("ecru.MapleTree.mod_ecru_MapleTree").getField("Item_mapleSyrup").get(null);
+			if (item != null) {
+				ItemStack registerItem = new ItemStack(item, 1, 0);
 				if (this.registerModItems("maple", registerItem)) {
 					AMTLogger.debugInfo("Succeeded to get maplesyrup");
 				}
@@ -280,10 +279,9 @@ public class LoadModHandler {
 								 Character.valueOf('Z'), new ItemStack(DCsAppleMilk.itemLargeBottle, 1, 0),
 								 Character.valueOf('X'), registerItem}));
 			}
-			Object obj2 = Class.forName("ecru.MapleTree.mod_ecru_MapleTree").getField("mapleWood").get(null);
-			if (obj2 instanceof Block) {
-				Block maplewood = (Block)obj2;
-				ItemStack registerItem2 = new ItemStack(maplewood, 1, 0);
+			Block block = Util.getModBlock("mod_ecru_MapleTree", "ecru_BlockMapleWood");
+			if (block != null) {
+				ItemStack registerItem2 = new ItemStack(block, 1, 0);
 				if (this.registerModItems("mapleWood", registerItem2)) {
 					AMTLogger.debugInfo("Succeeded to get mapleWood");
 				}
@@ -299,7 +297,7 @@ public class LoadModHandler {
 				
 				GameRegistry.addRecipe(
 						 new ShapelessOreRecipe(
-								 new ItemStack(maplewood, 9, 0),
+								 new ItemStack(block, 9, 0),
 			    		  new Object[]{
 						  new ItemStack(DCsAppleMilk.woodBox, 1, 9)
 							 }));

@@ -1,40 +1,43 @@
 package mods.defeatedcrow.common;
 
 
-
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import cpw.mods.fml.common.FMLLog;
 
 public class AMTLogger {
 	
-	public static final Logger logger = Logger.getLogger("DCsAppleMilk");
+	public static Logger logger = LogManager.getLogger("AppleMilkTea");
 	
 	public static void loadingModInfo(String modid) {
-		logger.log(Level.FINER, "Now checking other mod :" + modid);
+		AMTLogger.logger.trace("Now checking other mod :" + modid);
 	}
 	
 	public static void loadedModInfo(String modid) {
-		logger.log(Level.FINER, "Succeeded to check other mod :" + modid);
+		AMTLogger.logger.trace("Succeeded to check other mod :" + modid);
 	}
 	
 	public static void failLoadingModInfo(String modid) {
-		logger.log(Level.FINER, "Failed to check other mod :" + modid);
+		AMTLogger.logger.error("Failed to check other mod :" + modid);
 	}
 	
 	public static void trace(String msg) {
-		logger.log(Level.FINEST, msg);
+		AMTLogger.logger.trace(msg);
 	}
 	
 	public static void info(String msg) {
-		logger.setParent((Logger) FMLLog.getLogger());
-		logger.log(Level.INFO, msg);
+		AMTLogger.logger.info(msg);
+	}
+	
+	public static void warn(String msg) {
+		AMTLogger.logger.warn(msg);
 	}
 	
 	public static void debugInfo(String msg) {
 		if (DCsAppleMilk.debugMode) {
-			logger.log(Level.INFO, "Debug: " + msg);
+			AMTLogger.logger.info("Debug: " + msg);
 		}
 	}
 

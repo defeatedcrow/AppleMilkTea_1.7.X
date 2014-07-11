@@ -26,6 +26,10 @@ public class LoadRailCraftPlugin {
 						new ItemStack(DCsAppleMilk.charcoalBox, 1, 0), this.creosote, 1800);
 				RailcraftCraftingManager.cokeOven.addRecipe(new ItemStack(DCsAppleMilk.woodBox, 1, 3), false, false,
 						new ItemStack(DCsAppleMilk.charcoalBox, 1, 0), this.creosote, 1800);
+				RailcraftCraftingManager.cokeOven.addRecipe(new ItemStack(DCsAppleMilk.woodBox, 1, 11), false, false,
+						new ItemStack(DCsAppleMilk.charcoalBox, 1, 0), this.creosote, 1800);
+				RailcraftCraftingManager.cokeOven.addRecipe(new ItemStack(DCsAppleMilk.woodBox, 1, 12), false, false,
+						new ItemStack(DCsAppleMilk.charcoalBox, 1, 0), this.creosote, 1800);
 			}
 			
 		}

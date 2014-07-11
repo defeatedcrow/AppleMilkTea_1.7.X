@@ -167,10 +167,10 @@ public class RenderChalcedonyLamp implements ISimpleBlockRenderingHandler{
 				renderer.setRenderBoundsFromBlock(block);
 				renderer.renderStandardBlock(block, x, y, z);
 				
-				renderer.setOverrideBlockTexture(this.IIcon0);
-				block.setBlockBounds(7.0F/16.0F, 7.0F/16.0F, 7.0F/16.0F, 9.0F/16.0F, 9.0F/16.0F, 9.0F/16.0F);
-				renderer.setRenderBoundsFromBlock(block);
-				renderer.renderStandardBlock(block, x, y, z);
+//				renderer.setOverrideBlockTexture(this.IIcon0);
+//				block.setBlockBounds(7.0F/16.0F, 7.0F/16.0F, 7.0F/16.0F, 9.0F/16.0F, 9.0F/16.0F, 9.0F/16.0F);
+//				renderer.setRenderBoundsFromBlock(block);
+//				renderer.renderStandardBlock(block, x, y, z);
 			}
 			else if (meta == 2 || meta == 3 || meta == 8 || meta == 9)
 			{
@@ -184,10 +184,10 @@ public class RenderChalcedonyLamp implements ISimpleBlockRenderingHandler{
 				renderer.setRenderBoundsFromBlock(block);
 				renderer.renderStandardBlock(block, x, y, z);
 				
-				renderer.setOverrideBlockTexture(this.IIcon0);
-				block.setBlockBounds(7.0F/16.0F, 7.0F/16.0F, 7.0F/16.0F, 9.0F/16.0F, 9.0F/16.0F, 9.0F/16.0F);
-				renderer.setRenderBoundsFromBlock(block);
-				renderer.renderStandardBlock(block, x, y, z);
+//				renderer.setOverrideBlockTexture(this.IIcon0);
+//				block.setBlockBounds(7.0F/16.0F, 7.0F/16.0F, 7.0F/16.0F, 9.0F/16.0F, 9.0F/16.0F, 9.0F/16.0F);
+//				renderer.setRenderBoundsFromBlock(block);
+//				renderer.renderStandardBlock(block, x, y, z);
 			}
 			else if (meta == 4)
 			{

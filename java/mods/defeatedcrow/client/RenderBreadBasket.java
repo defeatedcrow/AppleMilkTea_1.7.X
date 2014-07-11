@@ -2,6 +2,7 @@ package mods.defeatedcrow.client;
 
 
 import org.lwjgl.opengl.GL11;
+import org.lwjgl.opengl.GL12;
 
 import mods.defeatedcrow.common.*;
 import net.minecraft.block.Block;

@@ -35,7 +35,7 @@ public class BlockCharcoalBox extends Block implements IFuelHandler{
 	public int getBurnTime(ItemStack fuel) {
 		
 		Item i = fuel.getItem();
-		return i == Item.getItemFromBlock(this) ? 14400 : 0;
+		return i == Item.getItemFromBlock(this) ? 16000 : 0;
 	}
 	
 	@Override

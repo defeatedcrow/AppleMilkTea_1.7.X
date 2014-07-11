@@ -122,6 +122,32 @@ public class DCsRecipeRegister {
 						 Character.valueOf('U'), new ItemStack(Blocks.log,1,i)
 					 });
 		 }
+		
+		GameRegistry.addShapelessRecipe(
+	    		  new ItemStack(Blocks.log2,9,1),
+	    			  new ItemStack(DCsAppleMilk.woodBox,1,11));
+		 
+		 GameRegistry.addRecipe(
+				 new ItemStack(DCsAppleMilk.woodBox,1,11),
+				 new Object[]{
+					 "UUU",
+					 "UUU",
+					 "UUU",
+					 Character.valueOf('U'), new ItemStack(Blocks.log2,1,1)
+				 });
+		 
+		 GameRegistry.addShapelessRecipe(
+	    		  new ItemStack(Blocks.log2,9,0),
+	    			  new ItemStack(DCsAppleMilk.woodBox,1,12));
+		 
+		 GameRegistry.addRecipe(
+				 new ItemStack(DCsAppleMilk.woodBox,1,12),
+				 new Object[]{
+					 "UUU",
+					 "UUU",
+					 "UUU",
+					 Character.valueOf('U'), new ItemStack(Blocks.log2,1,0)
+				 });
 		 
 		 GameRegistry.addShapelessRecipe(
 	    		  new ItemStack(Items.apple,9),

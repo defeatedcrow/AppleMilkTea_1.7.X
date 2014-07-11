@@ -51,6 +51,10 @@ public class ItemChalcedonyLamp extends ItemBlock{
 				par3EntityPlayer.addPotionEffect(new PotionEffect(Potion.waterBreathing.id, 600*i2, 0));
 				par3EntityPlayer.addPotionEffect(new PotionEffect(Potion.resistance.id, 600*i2, i));
 			}
+			if(meta == 10 && DCsAppleMilk.absHeal != null)
+			{
+				par3EntityPlayer.addPotionEffect(new PotionEffect(DCsAppleMilk.absHeal.id, 600*i2, i));
+			}
 		}
 
         return par1ItemStack.stackSize <= 0 ? new ItemStack(Items.flint, 1, 0) : par1ItemStack;
@@ -69,7 +73,7 @@ public class ItemChalcedonyLamp extends ItemBlock{
 	public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
     {
         int meta = par1ItemStack.getItemDamage();
-        if (meta == 4 || meta == 5) par3EntityPlayer.setItemInUse(par1ItemStack, this.getMaxItemUseDuration(par1ItemStack));
+        if (meta == 4 || meta == 5 || meta == 10) par3EntityPlayer.setItemInUse(par1ItemStack, this.getMaxItemUseDuration(par1ItemStack));
         return par1ItemStack;
     }
 	

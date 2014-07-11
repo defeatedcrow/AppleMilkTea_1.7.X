@@ -26,7 +26,7 @@ public class PotionArrayEXTransformer2 implements IClassTransformer, Opcodes{
     
     @Override
     public byte[] transform(String name, String transformedName, byte[] basicClass) {
-        if (!AppleMilkCorePlugin.allowLoad) {return basicClass;}
+        if (!AppleMilkCorePlugin.allowLoad || AppleMilkCorePlugin.forcedDisable) {return basicClass;}
         if (!transformedName.equals(TARGET_CLASS_NAME)) {return basicClass;}
         try {
 //        	AppleMilkCorePlugin.logger.setParent((Logger) FMLLog.getLogger());

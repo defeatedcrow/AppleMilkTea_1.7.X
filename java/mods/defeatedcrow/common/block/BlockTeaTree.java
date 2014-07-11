@@ -133,6 +133,7 @@ public class BlockTeaTree extends Block implements IPlantable{
         }
     }
 	
+	@Override
 	@SideOnly(Side.CLIENT)
 	public void getSubBlocks(Item par1, CreativeTabs par2CreativeTabs, List par3List)
     {
