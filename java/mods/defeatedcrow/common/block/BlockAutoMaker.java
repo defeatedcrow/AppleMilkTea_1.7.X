@@ -85,10 +85,11 @@ public class BlockAutoMaker extends BlockContainer{
         }
     }
 	
+	@Override
 	public void onNeighborBlockChange(World par1World, int par2, int par3, int par4, Block par5)
 	{
 		super.onNeighborBlockChange(par1World, par2, par3, par4, par5);
-		this.updateMetadata(par1World, par2, par3, par4);
+//		this.updateMetadata(par1World, par2, par3, par4);
 	}
 	
 	private void updateMetadata(World par1World, int par2, int par3, int par4)
@@ -128,8 +129,8 @@ public class BlockAutoMaker extends BlockContainer{
 							
 						}
 						
-						par1World.notifyBlocksOfNeighborChange(par2, par3, par4, this);
-						par1World.notifyBlocksOfNeighborChange(par2, par3 -1, par4, target.getBlockType());
+//						par1World.notifyBlocksOfNeighborChange(par2, par3, par4, this);
+//						par1World.notifyBlocksOfNeighborChange(par2, par3 -1, par4, target.getBlockType());
 					}
 					
 				}

@@ -194,7 +194,7 @@ public class DCsAppleMilk{
 	public static boolean inClient = false;
 	public static boolean inServer = false;
 	public static boolean thirdParty = false;
-	public static boolean debugMode = true;
+	public static boolean debugMode = false;
 	public static boolean succeedAddPotion = false;
 	
 	//新ツール属性の追加

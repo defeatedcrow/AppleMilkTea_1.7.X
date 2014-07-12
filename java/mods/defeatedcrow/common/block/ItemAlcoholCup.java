@@ -48,6 +48,10 @@ public class ItemAlcoholCup extends EdibleItemBlock{
 		{
     		this.setPotionWithIce(par3EntityPlayer, par1ItemStack.getItemDamage());
 //    		this.addSSMoisture(4, 3F, par3EntityPlayer);
+    		if (DCsAppleMilk.suffocation != null && par3EntityPlayer.isPotionActive(DCsAppleMilk.suffocation))
+    		{
+    			par3EntityPlayer.removePotionEffect(DCsAppleMilk.suffocation.id);
+    		}
 		}
 		return super.onEaten(par1ItemStack, par2World, par3EntityPlayer);
 	}
@@ -72,17 +76,17 @@ public class ItemAlcoholCup extends EdibleItemBlock{
 		
 		ArrayList<PotionEffect> ret = new ArrayList<PotionEffect>();
 		
-		if(meta == 0 && DCsAppleMilk.succeedAddPotion)//sake
+		if(meta == 0 && DCsAppleMilk.reflex != null)//sake
 		{
-			potion = new PotionEffect(DCsAppleMilk.reflex.id, 2400, 0);
+			potion = new PotionEffect(DCsAppleMilk.reflex.id, 600, 0);
 		}
 		else if(meta == 1)//beer
 		{
 			potion = new PotionEffect(Potion.digSpeed.id, 2400, 0);
 		}
-		else if (meta == 2 && DCsAppleMilk.succeedAddPotion)//wine
+		else if (meta == 2 && DCsAppleMilk.absHeal != null)//wine
 		{
-			potion = new PotionEffect(DCsAppleMilk.absHeal.id, 2400, 0);
+			potion = new PotionEffect(DCsAppleMilk.absHeal.id, 600, 0);
 		}
 		else if (meta == 3)//rum
 		{

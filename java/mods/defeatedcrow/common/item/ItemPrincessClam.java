@@ -249,12 +249,19 @@ public class ItemPrincessClam extends Item {
 	private boolean moonCanWarp(World world, int X, int Y, int Z)
 	{
 		boolean flag = false;
-		if (Y > 128 || world.provider.hasNoSky) return false;
+		if (Y > 250 || world.provider.hasNoSky) return false;
 		if (world.canBlockSeeTheSky(X, Y + 1, Z))
 		{
 			Block block = world.getBlock(X, Y, Z);
 			if (block.getMaterial() == Material.grass) flag = true;
 			if (block.getMaterial() == Material.snow) flag = true;
+			if (block == Blocks.ice) flag = true;
+			if (block == Blocks.snow_layer) flag = true;
+		}
+		else
+		{
+			Block block = world.getBlock(X, Y, Z);
+			if (block == Blocks.grass) flag = true;
 		}
 		return flag;
 	}

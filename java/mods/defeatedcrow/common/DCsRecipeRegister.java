@@ -281,24 +281,24 @@ public class DCsRecipeRegister {
 	    			  Character.valueOf('X'), "stickWood"})); 
 		 
 		 GameRegistry.addShapelessRecipe(
-				 new ItemStack(Blocks.red_mushroom_block, 9),
+				 new ItemStack(Blocks.red_mushroom, 9),
 				 new ItemStack(DCsAppleMilk.mushroomBox, 1, 0));
 		 
 		 GameRegistry.addShapelessRecipe(
-				 new ItemStack(Blocks.brown_mushroom_block, 9),
+				 new ItemStack(Blocks.brown_mushroom, 9),
 				 new ItemStack(DCsAppleMilk.mushroomBox, 1, 1));
 		 
 		 GameRegistry.addRecipe(
 				 new ShapedOreRecipe(
 	    		  new ItemStack(DCsAppleMilk.mushroomBox, 1, 0),
 	    		  new Object[]{"XXX","XXX","XXX",
-	    			  Character.valueOf('X'), new ItemStack(Blocks.red_mushroom_block, 1)})); 
+	    			  Character.valueOf('X'), new ItemStack(Blocks.red_mushroom, 1)})); 
 		 
 		 GameRegistry.addRecipe(
 				 new ShapedOreRecipe(
 	    		  new ItemStack(DCsAppleMilk.mushroomBox, 1, 1),
 	    		  new Object[]{"XXX","XXX","XXX",
-	    			  Character.valueOf('X'), new ItemStack(Blocks.brown_mushroom_block, 1)})); 
+	    			  Character.valueOf('X'), new ItemStack(Blocks.brown_mushroom, 1)})); 
 		 
 		 GameRegistry.addRecipe(
 				 new ShapedOreRecipe(

@@ -41,15 +41,6 @@ public class DCsLivingEvent {
 					PotionEffect effect = (PotionEffect)iterator.next();
 					
 					int newID = effect.getPotionID();
-					newID = (newID >> 7) & 1;
-					if (newID == 1)
-					{
-						newID = newID | 0xFFFFFF00;
-					}
-					else
-					{
-						newID = newID & 0x000000FF;
-					}
 					
 					Potion potion = Potion.potionTypes[newID];
 					int amp = effect.getAmplifier();

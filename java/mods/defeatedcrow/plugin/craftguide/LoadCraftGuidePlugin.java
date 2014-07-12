@@ -21,7 +21,9 @@ public class LoadCraftGuidePlugin extends CraftGuideAPIObject{
 			
 			Class api = Class.forName("uristqwerty.CraftGuide.ReflectionAPI");
 			Method register = api.getMethod("registerAPIObject", new Class[] { Object.class });
-			register.invoke(null, new Object[] {teaRecipeCG, iceRecipeCG, panRecipeCG} );
+			register.invoke(null, new Object[] {teaRecipeCG} );
+			register.invoke(null, new Object[] {iceRecipeCG} );
+			register.invoke(null, new Object[] {panRecipeCG} );
 			
 			AMTLogger.loadedModInfo("CraftGuide");
 		}

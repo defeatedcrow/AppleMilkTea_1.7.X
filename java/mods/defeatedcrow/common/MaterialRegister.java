@@ -107,7 +107,7 @@ public class MaterialRegister {
 	public void addPotion()
 	{
 		//ポーション効果の追加
-		//コンフィグでIDが33~127の範囲内の時のみ追加する。
+		//コンフィグでIDが~127の範囲内の時のみ追加する。
 		if (Potion.potionTypes[DCsConfig.potionIDImmunity] == null && DCsConfig.potionIDImmunity < 128){
 			DCsAppleMilk.Immunization = (new PotionImmunity(DCsConfig.potionIDImmunity, false, 7889559)).
 					setPotionName("DCs.potion.immunization");

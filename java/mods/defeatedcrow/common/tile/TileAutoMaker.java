@@ -114,6 +114,7 @@ public class TileAutoMaker extends TileEntity implements IInventory
     }
     
     //update tileentity
+    @Override
     public void updateEntity()
     {
     	if (this.worldObj != null)
@@ -139,16 +140,17 @@ public class TileAutoMaker extends TileEntity implements IInventory
     			if (this.isAutoMode())
     			{
     				boolean flag = false;
-    				int id = this.isTeaMaterial(this.getItemstack());
-        			
-        			if (id > 1 && this.updateBlock() && this.reduceItemStack())
-        			{
-        				flag = true;
-        				this.markDirty();
-        				this.tileNext.markDirty();
-        				this.setCoolTime(8);
-        			}
-    				
+//    				int id = this.isTeaMaterial(this.getItemstack());
+//    				TileMakerNext tile = (TileMakerNext)this.worldObj.getTileEntity(xCoord, (yCoord - 1), zCoord);
+//        			
+//        			if (tile != null && id > 1 && this.updateBlock() && this.reduceItemStack())
+//        			{
+//        				flag = true;
+//        				this.markDirty();
+//        				tile.markDirty();
+//        				this.setCoolTime(8);
+//        			}
+//    				
     				return flag;
     			}
     			else
@@ -174,8 +176,8 @@ public class TileAutoMaker extends TileEntity implements IInventory
 		Block under = this.worldObj.getBlock(xCoord, yCoord -1, zCoord);
     	if (this.worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, 1, 3))
     	{
-    		this.worldObj.notifyBlocksOfNeighborChange(this.xCoord, this.yCoord, this.zCoord, this.getBlockType());
-        	this.worldObj.notifyBlockOfNeighborChange(this.xCoord, this.yCoord - 1, this.zCoord, under);
+//    		this.worldObj.notifyBlocksOfNeighborChange(this.xCoord, this.yCoord, this.zCoord, this.getBlockType());
+//        	this.worldObj.notifyBlockOfNeighborChange(this.xCoord, this.yCoord - 1, this.zCoord, under);
         	flag = true;
     	}
     	

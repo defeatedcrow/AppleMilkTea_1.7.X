@@ -40,7 +40,7 @@ public class IceRecipeHandlerCG implements RecipeProvider{
 		{
 			Entry<ItemStack, ItemStack[]> recipe = inputs.next();
 			ItemStack[] outputs = recipe.getValue();
-			Object[] items = new Object[3];
+			Object[] items = new Object[4];
 	        items[0] = recipe.getKey();
 	        items[1] = outputs[0];
 	        items[2] = outputs[1];

@@ -40,15 +40,6 @@ public class DCsHurtEvent {
 				PotionEffect effect = (PotionEffect)iterator.next();
 				
 				int newID = effect.getPotionID();
-				newID = (newID >> 7) & 1;
-				if (newID == 1)
-				{
-					newID = newID | 0xFFFFFF00;
-				}
-				else
-				{
-					newID = newID & 0x000000FF;
-				}
 				
 				Potion potion = Potion.potionTypes[newID];
 				int amp = effect.getAmplifier();
@@ -91,7 +82,7 @@ public class DCsHurtEvent {
 				if (potion instanceof PotionReflexBase)
 				{
 					PotionReflexBase reflex = (PotionReflexBase) potion;
-					if (reflex.effectFormer(target, source, reflex.getId(), damage))//反射処理に成功した時
+					if (reflex.effectFormer(target, source, effect, damage))//反射処理に成功した時
 					{
 						reduceAmp = reflex.getId();
 						canPrevent = true;
@@ -99,7 +90,7 @@ public class DCsHurtEvent {
 				}
 				
 				//せっかくなので、ジャンプ力増加ポーション効果で落下ダメージを受けるのをなくすことにした
-				if (potion.id == potion.jump.id && source == DamageSource.fall)
+				if (potion != null && potion.id == potion.jump.id && source == DamageSource.fall)
 				{
 					canPrevent = true;
 				}
@@ -107,18 +98,9 @@ public class DCsHurtEvent {
 			
 			if (canPrevent)//無効化成功フラグが立ったらダメージが無効化される。
 			{
-				AMTLogger.debugInfo("potioneffect cancel huet event.");
+				AMTLogger.debugInfo("potioneffect cancel hurt event.");
 				event.ammount = 0.0F;
 				event.setCanceled(true);
-			}
-			
-			if (reduceAmp > 0)//Amplifierを減らす処理を、while処理の中から外に出した
-			{
-				PotionEffect potion = target.getActivePotionEffect(Potion.potionTypes[reduceAmp]);
-				target.removePotionEffect(reduceAmp);
-				if (potion != null && potion.getAmplifier() > 0){
-					target.addPotionEffect(new PotionEffect(reduceAmp, potion.getDuration(), (potion.getAmplifier() - 1)));
-				}
 			}
 			
 		}
