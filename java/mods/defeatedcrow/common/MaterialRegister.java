@@ -399,7 +399,7 @@ public class MaterialRegister {
 				setUnlocalizedName("defeatedcrow.leafTea").
 				setCreativeTab(DCsAppleMilk.applemilk);
 		
-		DCsAppleMilk.itemMintSeed = (new ItemSeeds(DCsAppleMilk.cropMint, Blocks.farmland)).
+		DCsAppleMilk.itemMintSeed = (new ItemMintSeed()).
 				setUnlocalizedName("defeatedcrow.seedMint").
 				setCreativeTab(DCsAppleMilk.applemilk).
 				setTextureName("defeatedcrow:seed_mint");

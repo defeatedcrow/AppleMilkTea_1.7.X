@@ -9,8 +9,10 @@ import java.util.Random;
 import mods.defeatedcrow.common.DCsAppleMilk;
 import mods.defeatedcrow.handler.Util;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockBush;
 import net.minecraft.block.BlockFarmland;
 import net.minecraft.block.BlockFlower;
+import net.minecraft.block.IGrowable;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -22,20 +24,20 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
-public class BlockMintCrop extends BlockFlower
+public class BlockMintCrop extends BlockBush implements IGrowable
 {
     @SideOnly(Side.CLIENT)
     private IIcon[] iconArray;
 
     public BlockMintCrop()
     {
-        super(0);
+        super();
         this.setTickRandomly(true);
         float f = 0.5F;
         this.setBlockBounds(0.5F - f, 0.0F, 0.5F - f, 0.5F + f, 0.25F, 0.5F + f);
         this.setCreativeTab((CreativeTabs)null);
         this.setHardness(0.0F);
-        this.setStepSound(soundTypeStone);
+        this.setStepSound(soundTypeGrass);
         this.disableStats();
     }
 
@@ -80,6 +82,19 @@ public class BlockMintCrop extends BlockFlower
                 }
             }
         }
+    }
+    
+    //IGrowableで使用されているメソッド。
+    public void grow (World world, int x, int y, int z)
+    {
+    	int l = world.getBlockMetadata(x, y, z) + MathHelper.getRandomIntegerInRange(world.rand, 2, 5);
+
+        if (l > 3)
+        {
+            l = 3;
+        }
+
+        world.setBlockMetadataWithNotify(x, y, z, l, 2);
     }
 
     /*
@@ -218,6 +233,12 @@ public class BlockMintCrop extends BlockFlower
     {
         return 0;
     }
+    
+    @SideOnly(Side.CLIENT)
+    public Item getItem(World p_149694_1_, int p_149694_2_, int p_149694_3_, int p_149694_4_)
+    {
+        return this.getSeedItem();
+    }
 
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister par1IconRegister)
@@ -229,4 +250,19 @@ public class BlockMintCrop extends BlockFlower
             this.iconArray[i] = par1IconRegister.registerIcon(Util.getTexturePassNoAlt() + "crop_mint" + "_stage_" + i);
         }
     }
+
+	@Override
+	public boolean func_149851_a(World world, int x, int y, int z, boolean var5) {
+		return world.getBlockMetadata(x, y, z) < 3;
+	}
+
+	@Override
+	public boolean func_149852_a(World world, Random rand, int x, int y, int z) {
+		return true;
+	}
+
+	@Override
+	public void func_149853_b(World world, Random rand, int x, int y, int z) {
+		this.grow(world, x, y, z);
+	}
 }

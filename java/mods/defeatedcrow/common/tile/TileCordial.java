@@ -12,7 +12,7 @@ import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeDictionary.Type;
 
 /* 熟成時間の処理と、完了したかどうかの判定を持つ。
- * 直射日光は厳禁。日光に当てると軸性時間がリセットされてしまう。*/
+ * 直射日光は厳禁。日光に当てると熟成時間がリセットされてしまう。*/
 public class TileCordial extends TileEntity{
 	
 	private int aging = 0;
