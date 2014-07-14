@@ -1,11 +1,11 @@
-## AppleMilkTea 1.7.2
+## AppleMilkTea 1.7.10
 
 ### 動作環境:
-・Minecraft 1.7.2
-<br>・MinecraftForge 10.12.2.1121+
+・Minecraft 1.7.10
+<br>・MinecraftForge 10.13.0.1180+
  
 ### ライセンス:
-・ソースコード：MMPL_1.0
+・ソースコード：MMPL-1.0
 <br>・テクスチャ・効果音：CC-BY-NC
 
 ### 注意事項
