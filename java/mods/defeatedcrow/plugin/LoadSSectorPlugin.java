@@ -3,7 +3,6 @@ package mods.defeatedcrow.plugin;
 import java.util.ArrayList;
 
 //import sextiarysector.stats.EntityPlayerManager;
-import mods.defeatedcrow.api.IceRecipe;
 import mods.defeatedcrow.common.AMTLogger;
 import mods.defeatedcrow.common.DCsAppleMilk;
 import mods.defeatedcrow.common.DCsConfig;

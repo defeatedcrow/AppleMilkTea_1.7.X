@@ -23,10 +23,12 @@ import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.IChatComponent;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import mods.defeatedcrow.api.recipe.*;
 import mods.defeatedcrow.common.*;
 import mods.defeatedcrow.common.tile.TileAutoMaker;
 import mods.defeatedcrow.common.tile.TileMakerNext;
-import mods.defeatedcrow.api.TeaRecipe;
+import mods.defeatedcrow.recipe.*;
+import mods.defeatedcrow.recipe.TeaRecipeRegister.TeaRecipe;
 
 public class BlockAutoMaker extends BlockContainer{
 	
@@ -113,13 +115,14 @@ public class BlockAutoMaker extends BlockContainer{
 				
 				if (items != null && makerID == 0)
 				{
-					int itemID = TeaRecipe.getID(items);
-					if (itemID > 0)
+					TeaRecipe recipe = TeaRecipeRegister.INSTANCE.getRecipe(items);
+					if (recipe != null)
 					{
 						if (mode == 1)
 						{
-							target.setID((byte)(itemID));
+							target.setItemStack(new ItemStack(items.getItem(), 1, items.getItemDamage()));
 							target.setRemainByte((byte)(3 + par1World.rand.nextInt(3)));
+							target.markDirty();
 							par1World.setBlockMetadataWithNotify(par2, par3, par4, 0, 3);
 							par1World.setBlockMetadataWithNotify(par2, par3 - 1, par4, nextMeta, 3);
 							par1World.playSoundEffect(par2, par3, par4, "random.pop", 0.4F, 1.8F);
@@ -200,21 +203,21 @@ public class BlockAutoMaker extends BlockContainer{
             			
             			if (target != null)
             			{
-            				ItemStack items = tile.getItemstack();
-            				int makerID = target.getID();
+            				ItemStack items = tile.getItemstack().copy();
+            				ItemStack markerItem = target.getItemStack().copy();
             				int underMeta = par1World.getBlockMetadata(par2, par3 - 1, par4);
             				int nextMeta = underMeta + 1;
             				if (underMeta > 3) nextMeta = 0;
             				
-            				if (items != null && makerID == 0)
+            				if (items != null && markerItem != null)
             				{
-            					int itemID = TeaRecipe.getID(items);
+            					TeaRecipe recipe = TeaRecipeRegister.INSTANCE.getRecipe(items);
             					tile.reduceItemStack();
-            					tile.markDirty();;
+            					tile.markDirty();
             					
-            					if (itemID > 0)
+            					if (recipe != null)
             					{
-            						target.setID((byte)(itemID));
+            						target.setItemStack(new ItemStack(items.getItem(), 1, items.getItemDamage()));
         							target.setRemainByte((byte)(3 + par1World.rand.nextInt(3)));
         							par1World.setBlockMetadataWithNotify(par2, par3 - 1, par4, nextMeta, 3);
         							par1World.setBlockMetadataWithNotify(par2, par3, par4, 0, 3);

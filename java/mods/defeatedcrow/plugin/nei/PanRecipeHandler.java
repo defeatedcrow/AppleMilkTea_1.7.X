@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map.Entry;
 
-import mods.defeatedcrow.api.RegisteredRecipeGet;
+import mods.defeatedcrow.recipe.RegisteredRecipeGet;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.item.ItemStack;
 import codechicken.nei.NEIServerUtils;

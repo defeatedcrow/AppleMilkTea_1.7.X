@@ -21,8 +21,8 @@ import mods.defeatedcrow.event.*;
 import mods.defeatedcrow.handler.*;
 import mods.defeatedcrow.plugin.*;
 import mods.defeatedcrow.plugin.craftguide.LoadCraftGuidePlugin;
-import mods.defeatedcrow.handler.recipe.*;
 import mods.defeatedcrow.potion.*;
+import mods.defeatedcrow.recipe.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
@@ -31,6 +31,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Item;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
 import net.minecraft.src.*;
 import net.minecraft.stats.Achievement;
@@ -46,6 +47,7 @@ import cpw.mods.fml.common.Mod.*;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.event.*;
+import cpw.mods.fml.common.event.FMLInterModComms.IMCEvent;
 import cpw.mods.fml.common.registry.*;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -53,7 +55,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 @Mod(
 		modid = "DCsAppleMilk",
 		name = "Apple&Milk&Tea!",
-		version = "1.7.2_1.0b",
+		version = "1.7.10_1.1a",
 		dependencies = "after:IC2;after:Thaumcraft;after:BambooMod;after:pamharvestcraft;after:Forestry;after:mod_ecru_MapleTree"
 		)
 //required-after:SampleCore;
@@ -407,6 +409,30 @@ public class DCsAppleMilk{
 	          e.printStackTrace(System.err);
 	        }
 	    }
+	    
+	    //IMCイベント用のテスト
+//	    NBTTagCompound toSend = new NBTTagCompound();
+//		toSend.setTag("input", new NBTTagCompound());
+//		toSend.setTag("output", new NBTTagCompound());
+//
+//		new ItemStack(DCsAppleMilk.leafTea, 1, 0).writeToNBT(toSend.getCompoundTag("input"));
+//		new ItemStack(DCsAppleMilk.clam, 1, 0).writeToNBT(toSend.getCompoundTag("output"));
+//		toSend.setString("texture", "defeatedcrow:textures/blocks/contents_milk.png");
+//		FMLInterModComms.sendMessage("DCsAppleMilk", "TeaMakerRecipe", toSend);
+//		
+//		NBTTagCompound toSend2 = new NBTTagCompound();
+//		toSend2.setTag("input", new NBTTagCompound());
+//		toSend2.setTag("output", new NBTTagCompound());
+//
+//		new ItemStack(DCsAppleMilk.leafTea, 1, 0).writeToNBT(toSend2.getCompoundTag("input"));
+//		new ItemStack(DCsAppleMilk.clam, 1, 0).writeToNBT(toSend2.getCompoundTag("output"));
+//		FMLInterModComms.sendMessage("DCsAppleMilk", "IceMakerRecipe", toSend2);
+	}
+	
+	@EventHandler
+	public void receiveIMC(IMCEvent event)
+	{
+		ReceivingIMCEvent.receiveIMC(event);
 	}
 	
 	@EventHandler

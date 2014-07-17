@@ -3,7 +3,8 @@ package mods.defeatedcrow.common.tile;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
-import mods.defeatedcrow.api.IceRecipe;
+import mods.defeatedcrow.recipe.*;
+import mods.defeatedcrow.recipe.IceRecipeRegister.IceRecipe;
 import mods.defeatedcrow.common.DCsAppleMilk;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -247,54 +248,62 @@ public class TileIceMaker extends TileEntity implements ISidedInventory
 		}
 		else
 		{
-			ItemStack itemstack = IceRecipe.getOutput(IceRecipe.getID(this.iceItemStacks[0]));
+			IceRecipe recipe = IceRecipeRegister.INSTANCE.getRecipe(this.iceItemStacks[0]);
 			
-			if (IceRecipe.canLeave(IceRecipe.getID(this.iceItemStacks[0])))
+			if (recipe != null)
 			{
-				ItemStack leavestack = IceRecipe.getLeaveStack(IceRecipe.getID(this.iceItemStacks[0]));
-				
-				if (itemstack == null || leavestack == null) return false;
-				boolean flag1 = false;
-				boolean flag2 = false;
-				
-				if (this.iceItemStacks[2] == null)
+				if (recipe.getContainer() != null)
 				{
-					flag1 = true;
+					ItemStack container = recipe.getContainer();
+					ItemStack output = recipe.getOutput();
+					
+					if (output == null || container == null) return false;
+					boolean flag1 = false;
+					boolean flag2 = false;
+					
+					if (this.iceItemStacks[2] == null)
+					{
+						flag1 = true;
+					}
+					else
+					{
+						if (this.iceItemStacks[2].isItemEqual(output))
+						{
+							int result = this.iceItemStacks[2].stackSize + output.stackSize;
+							flag1 = (result <= this.getInventoryStackLimit() && result <= output.getMaxStackSize());
+						}
+					}
+					
+					if (this.iceItemStacks[3] == null)
+					{
+						flag2 = true;
+					}
+					else
+					{
+						if (this.iceItemStacks[3].isItemEqual(container))
+						{
+							int leave = this.iceItemStacks[3].stackSize + container.stackSize;
+							flag2 = (leave <= this.getInventoryStackLimit() && leave <= container.getMaxStackSize());
+						}
+					}
+					
+					return (flag1 && flag2);
 				}
 				else
 				{
-					if (this.iceItemStacks[2].isItemEqual(itemstack))
-					{
-						int result = this.iceItemStacks[2].stackSize + itemstack.stackSize;
-						flag1 = (result <= this.getInventoryStackLimit() && result <= itemstack.getMaxStackSize());
-					}
+					ItemStack output = recipe.getOutput();
+					
+					if (output == null) return false;
+					
+					if (this.iceItemStacks[2] == null) return true;
+					if (!this.iceItemStacks[2].isItemEqual(output)) return false;
+					
+					int result = this.iceItemStacks[2].stackSize + output.stackSize;
+					return (result <= this.getInventoryStackLimit() && result <= output.getMaxStackSize());
 				}
-				
-				if (this.iceItemStacks[3] == null)
-				{
-					flag2 = true;
-				}
-				else
-				{
-					if (this.iceItemStacks[3].isItemEqual(leavestack))
-					{
-						int leave = this.iceItemStacks[3].stackSize + leavestack.stackSize;
-						flag2 = (leave <= this.getInventoryStackLimit() && leave <= leavestack.getMaxStackSize());
-					}
-				}
-				
-				return (flag1 && flag2);
 			}
-			else
-			{
-				if (itemstack == null) return false;
-				
-				if (this.iceItemStacks[2] == null) return true;
-				if (!this.iceItemStacks[2].isItemEqual(itemstack)) return false;
-				
-				int result = this.iceItemStacks[2].stackSize + itemstack.stackSize;
-				return (result <= this.getInventoryStackLimit() && result <= itemstack.getMaxStackSize());
-			}
+			
+			return false;
 		}
 	}
  
@@ -305,9 +314,9 @@ public class TileIceMaker extends TileEntity implements ISidedInventory
 	{
 		if (this.canSmelt())
 		{
-			int id = IceRecipe.getID(this.iceItemStacks[0]);
-			ItemStack itemstack = IceRecipe.getOutput(id);
-			ItemStack leave = IceRecipe.getLeaveStack(id);
+			IceRecipe recipe = IceRecipeRegister.INSTANCE.getRecipe(this.iceItemStacks[0]);
+			ItemStack itemstack = recipe.getOutput();
+			ItemStack container = recipe.getContainer();
  
 			if (this.iceItemStacks[2] == null)
 			{
@@ -318,15 +327,15 @@ public class TileIceMaker extends TileEntity implements ISidedInventory
 				this.iceItemStacks[2].stackSize += itemstack.stackSize;
 			}
  
-			if (IceRecipe.canLeave(id) && leave != null)//材料スロットに残すアイテム
+			if (container != null)//材料スロットに残すアイテム
 			{
 				if (this.iceItemStacks[3] == null)
 				{
-					this.iceItemStacks[3] = leave.copy();
+					this.iceItemStacks[3] = container.copy();
 				}
-				else if (this.iceItemStacks[3].isItemEqual(leave))
+				else if (this.iceItemStacks[3].isItemEqual(container))
 				{
-					this.iceItemStacks[3].stackSize += leave.stackSize;
+					this.iceItemStacks[3].stackSize += container.stackSize;
 				}
 			}
 			
@@ -400,9 +409,9 @@ public class TileIceMaker extends TileEntity implements ISidedInventory
 			}
 			if (item == Items.snowball) return 1;
 			
-			if (IceRecipe.getChargeAmount(par0ItemStack) > 0)
+			if (IceRecipeRegister.INSTANCE.getChargeAmount(par0ItemStack) > 0)
 			{
-				return IceRecipe.getChargeAmount(par0ItemStack);
+				return IceRecipeRegister.INSTANCE.getChargeAmount(par0ItemStack);
 			}
 			return 0;
 		}

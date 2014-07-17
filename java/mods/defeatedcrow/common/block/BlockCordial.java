@@ -115,7 +115,7 @@ public class BlockCordial extends BlockContainer{
         	int rem = (tile.getAged()) ? 3 : 0;
         	int l = tile.getAgingStage();
         	int type = par1World.getBlockMetadata(par2, par3, par4);
-        	int damage = (type << 2) + rem;
+        	int damage = (par6 << 2) + rem;
         	
         	float f = par1World.rand.nextFloat() * 0.8F + 0.1F;
             float f1 = par1World.rand.nextFloat() * 0.8F + 0.1F;

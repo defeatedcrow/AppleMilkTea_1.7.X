@@ -2,7 +2,7 @@ package mods.defeatedcrow.client.model;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import mods.defeatedcrow.api.TeaRecipe;
+import mods.defeatedcrow.recipe.*;
 import mods.defeatedcrow.common.tile.TileMakerNext;
 import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
@@ -24,7 +24,7 @@ public class TileEntityMakerNextRenderer extends TileEntitySpecialRenderer
 
     public void renderTileEntityMakerAt(TileMakerNext par1Tile, double par2, double par4, double par6, float par8)
     {
-        this.setRotation((float)par2, (float)par4, (float)par6, par1Tile.getID(), par1Tile.getMilked());
+        this.setRotation((float)par2, (float)par4, (float)par6, par1Tile);
     }
 
     /**
@@ -36,26 +36,22 @@ public class TileEntityMakerNextRenderer extends TileEntitySpecialRenderer
         makerRenderer = this;
     }
 
-    public void setRotation(float par1, float par2, float par3, byte par4, boolean milk)
+    public void setRotation(float par1, float par2, float par3, TileMakerNext tile)
     {
         ModelMakerNext model = this.nextModel;
-        String tex = TeaRecipe.getTex(par4);
+        String tex = tile.getCurrentTexture();
+        boolean hasItem = (tile.getItemStack() != null);
+        boolean isMilked = tile.getMilked();
+        
         makerTex = new ResourceLocation(tex);
 
-        if (par4 == 0)
-        {
-        	this.bindTexture(emptyTex);
-        }
-        else
-        {
-        	this.bindTexture(makerTex);
-        }
+        this.bindTexture(makerTex);
         
         GL11.glPushMatrix();
         GL11.glEnable(GL12.GL_RESCALE_NORMAL);
         GL11.glEnable(GL11.GL_BLEND);
         GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-        if (milk)
+        if (isMilked)
         {
         	GL11.glColor4f(2.0F, 2.0F, 2.0F, 1.0F);
         }

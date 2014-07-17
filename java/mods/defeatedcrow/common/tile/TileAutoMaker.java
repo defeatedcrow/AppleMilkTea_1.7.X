@@ -3,7 +3,8 @@ package mods.defeatedcrow.common.tile;
 import mods.defeatedcrow.common.DCsAppleMilk;
 import mods.defeatedcrow.common.block.BlockAutoMaker;
 import mods.defeatedcrow.handler.Util;
-import mods.defeatedcrow.api.TeaRecipe;
+import mods.defeatedcrow.recipe.*;
+import mods.defeatedcrow.recipe.TeaRecipeRegister.TeaRecipe;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -238,10 +239,10 @@ public class TileAutoMaker extends TileEntity implements IInventory
     	return false;
     }
     
-    private int isTeaMaterial(ItemStack input)
+    private boolean isTeaMaterial(ItemStack input)
     {
-    	int ID = TeaRecipe.getID(input);
-    	return ID;
+    	TeaRecipe recipe = TeaRecipeRegister.INSTANCE.getRecipe(input);
+    	return recipe != null;
     }
 
 	private int getMetadata()
@@ -329,7 +330,7 @@ public class TileAutoMaker extends TileEntity implements IInventory
 	public boolean isItemValidForSlot(int par1, ItemStack par2ItemStack) {
 		
 		boolean flag = false;
-		if (par2ItemStack != null && this.isTeaMaterial(par2ItemStack) > 0)
+		if (par2ItemStack != null && this.isTeaMaterial(par2ItemStack))
 		{
 			flag = true;
 		}

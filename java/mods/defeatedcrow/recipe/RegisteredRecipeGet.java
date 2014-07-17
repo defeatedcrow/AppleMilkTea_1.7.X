@@ -1,11 +1,14 @@
-package mods.defeatedcrow.api;
+package mods.defeatedcrow.recipe;
 
 import java.util.HashMap;
 
+import mods.defeatedcrow.api.recipe.*;
 import mods.defeatedcrow.common.*;
+import mods.defeatedcrow.recipe.IceRecipeRegister.IceRecipe;
+import mods.defeatedcrow.recipe.TeaRecipeRegister.TeaRecipe;
 import net.minecraft.item.ItemStack;
 
-public class RegisteredRecipeGet {
+public class RegisteredRecipeGet{
 	
 	public static HashMap<ItemStack, ItemStack> teaRecipeList = new HashMap<ItemStack, ItemStack>();
 	public static HashMap<ItemStack, ItemStack[]> iceRecipeList = new HashMap<ItemStack, ItemStack[]>();
@@ -13,27 +16,20 @@ public class RegisteredRecipeGet {
 	
 	public void setRecipeList() {
 		
-		for (int i = 1 ; i < TeaRecipe.outputs.size() ; i++) {
-			ItemStack input = TeaRecipe.getInput(i);
-			ItemStack output = TeaRecipe.getOutput(i);
+		for (TeaRecipe recipe : TeaRecipeRegister.INSTANCE.getRecipeList()) {
+			ItemStack input = recipe.getInput();
+			ItemStack output = recipe.getOutput();
 			
 			if (input != null && output != null) {
 				teaRecipeList.put(input, output);
 			}
 		}
 		
-		for (int i = 1 ; i < IceRecipe.recipeID.size() ; i++) {
-			ItemStack input = IceRecipe.getInput(i);
+		for (IceRecipe recipe : IceRecipeRegister.INSTANCE.getRecipeList()) {
+			ItemStack input = recipe.getInput();
 			ItemStack[] output = new ItemStack[2];
-			if (IceRecipe.canLeave(i)) {
-				output[0] = IceRecipe.getOutput(i);
-				output[1] = IceRecipe.getLeaveStack(i);
-			}
-			else
-			{
-				output[0] = IceRecipe.getOutput(i);
-				output[1] = (ItemStack)null;
-			}
+			output[0] = recipe.getOutput();
+			output[1] = recipe.getContainer();
 			
 			if (input != null && output != null) {
 				iceRecipeList.put(input, output);

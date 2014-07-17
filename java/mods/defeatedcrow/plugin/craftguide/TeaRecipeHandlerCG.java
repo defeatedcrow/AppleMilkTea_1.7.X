@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map.Entry;
 import java.util.Set;
 
-import mods.defeatedcrow.api.RegisteredRecipeGet;
+import mods.defeatedcrow.recipe.RegisteredRecipeGet;
 import mods.defeatedcrow.common.DCsAppleMilk;
 import net.minecraft.item.ItemStack;
 import uristqwerty.CraftGuide.api.ItemSlot;
