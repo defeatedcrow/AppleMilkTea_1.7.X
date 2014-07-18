@@ -115,7 +115,7 @@ public class BlockAutoMaker extends BlockContainer{
 				
 				if (items != null && makerID == 0)
 				{
-					TeaRecipe recipe = TeaRecipeRegister.INSTANCE.getRecipe(items);
+					ITeaRecipe recipe = RecipeRegisterManager.teaRecipe.getRecipe(items);
 					if (recipe != null)
 					{
 						if (mode == 1)
@@ -203,20 +203,21 @@ public class BlockAutoMaker extends BlockContainer{
             			
             			if (target != null)
             			{
-            				ItemStack items = tile.getItemstack().copy();
-            				ItemStack markerItem = target.getItemStack().copy();
+            				ItemStack items = tile.getItemstack();
+            				ItemStack markerItem = target.getItemStack();
             				int underMeta = par1World.getBlockMetadata(par2, par3 - 1, par4);
             				int nextMeta = underMeta + 1;
             				if (underMeta > 3) nextMeta = 0;
             				
-            				if (items != null && markerItem != null)
+            				if (items != null && markerItem == null)
             				{
-            					TeaRecipe recipe = TeaRecipeRegister.INSTANCE.getRecipe(items);
-            					tile.reduceItemStack();
-            					tile.markDirty();
+            					ITeaRecipe recipe = RecipeRegisterManager.teaRecipe.getRecipe(items);
             					
             					if (recipe != null)
             					{
+            						tile.reduceItemStack();
+                					tile.markDirty();
+            						
             						target.setItemStack(new ItemStack(items.getItem(), 1, items.getItemDamage()));
         							target.setRemainByte((byte)(3 + par1World.rand.nextInt(3)));
         							par1World.setBlockMetadataWithNotify(par2, par3 - 1, par4, nextMeta, 3);

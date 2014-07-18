@@ -5,6 +5,7 @@ import java.io.IOException;
 
 import mods.defeatedcrow.recipe.*;
 import mods.defeatedcrow.recipe.IceRecipeRegister.IceRecipe;
+import mods.defeatedcrow.api.recipe.*;
 import mods.defeatedcrow.common.DCsAppleMilk;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -248,7 +249,7 @@ public class TileIceMaker extends TileEntity implements ISidedInventory
 		}
 		else
 		{
-			IceRecipe recipe = IceRecipeRegister.INSTANCE.getRecipe(this.iceItemStacks[0]);
+			IIceRecipe recipe = RecipeRegisterManager.iceRecipe.getRecipe(this.iceItemStacks[0]);
 			
 			if (recipe != null)
 			{
@@ -314,7 +315,7 @@ public class TileIceMaker extends TileEntity implements ISidedInventory
 	{
 		if (this.canSmelt())
 		{
-			IceRecipe recipe = IceRecipeRegister.INSTANCE.getRecipe(this.iceItemStacks[0]);
+			IIceRecipe recipe = RecipeRegisterManager.iceRecipe.getRecipe(this.iceItemStacks[0]);
 			ItemStack itemstack = recipe.getOutput();
 			ItemStack container = recipe.getContainer();
  
@@ -409,9 +410,9 @@ public class TileIceMaker extends TileEntity implements ISidedInventory
 			}
 			if (item == Items.snowball) return 1;
 			
-			if (IceRecipeRegister.INSTANCE.getChargeAmount(par0ItemStack) > 0)
+			if (RecipeRegisterManager.iceRecipe.getChargeAmount(par0ItemStack) > 0)
 			{
-				return IceRecipeRegister.INSTANCE.getChargeAmount(par0ItemStack);
+				return RecipeRegisterManager.iceRecipe.getChargeAmount(par0ItemStack);
 			}
 			return 0;
 		}

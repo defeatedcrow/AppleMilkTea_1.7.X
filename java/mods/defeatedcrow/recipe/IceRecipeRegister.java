@@ -13,15 +13,18 @@ import net.minecraft.item.ItemStack;
 
 public class IceRecipeRegister extends RecipeRegisterManager implements IIceRecipeRegister{
 	
-	public static final IceRecipeRegister INSTANCE = new IceRecipeRegister();
-	private final List<IceRecipe> recipes = new ArrayList<IceRecipe>();
-	private final List<ChargeIceItem> chargeItems = new ArrayList<ChargeIceItem>();
+	private static List<IceRecipe> recipes;
+	private static List<ChargeIceItem> chargeItems;
 	
-	private IceRecipeRegister(){}
+	public IceRecipeRegister()
+	{
+		this.recipes = new ArrayList<IceRecipe>();
+		this.chargeItems = new ArrayList<ChargeIceItem>();
+	}
 	
 	public IIceRecipeRegister instance()
 	{
-		return this.INSTANCE;
+		return RecipeRegisterManager.iceRecipe;
 	}
 	
 

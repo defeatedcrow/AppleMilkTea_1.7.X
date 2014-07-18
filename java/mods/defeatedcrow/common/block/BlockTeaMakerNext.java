@@ -23,6 +23,8 @@ import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import mods.defeatedcrow.api.recipe.ITeaRecipe;
+import mods.defeatedcrow.api.recipe.RecipeRegisterManager;
 import mods.defeatedcrow.common.*;
 import mods.defeatedcrow.common.tile.TileMakerNext;
 import mods.defeatedcrow.plugin.LoadIC2Plugin;
@@ -53,8 +55,8 @@ public class BlockTeaMakerNext extends BlockContainer{
         ItemStack tileItem = tile.getItemStack();//tileが保持しているアイテム
         int remain = tile.getRemainByte();//残量
         
-        TeaRecipe recipe = null;//itemのほうのレシピ
-        if (itemstack != null) recipe = TeaRecipeRegister.INSTANCE.getRecipe(itemstack);
+        ITeaRecipe recipe = null;//itemのほうのレシピ
+        if (itemstack != null) recipe = RecipeRegisterManager.teaRecipe.getRecipe(itemstack);
         
         if (itemstack == null)
         {
@@ -98,11 +100,7 @@ public class BlockTeaMakerNext extends BlockContainer{
             			
             			tile.setRemainByte((byte)(remain - 1));
             			if ((remain - 1) == 0){
-            				tile.setID((byte)0);
-            				tile.setMilk(false);
-            				tile.setItemStack(null);
-            				tile.setTexture(null);
-            				tile.markDirty();
+            				tile.clearTile();
             			}
             			par1World.playSoundAtEntity(par5EntityPlayer, "random.pop", 0.4F, 1.8F);
             			return true;
@@ -142,11 +140,7 @@ public class BlockTeaMakerNext extends BlockContainer{
             			
             			tile.setRemainByte((byte)(remain - 1));
             			if ((remain - 1) == 0){
-            				tile.setID((byte)0);
-            				tile.setMilk(false);
-            				tile.setItemStack(null);
-            				tile.setTexture(null);
-            				tile.markDirty();
+            				tile.clearTile();
             			}
             			par1World.playSoundAtEntity(par5EntityPlayer, "random.pop", 0.4F, 1.8F);
             			return true;
@@ -164,26 +158,22 @@ public class BlockTeaMakerNext extends BlockContainer{
 				
 				if (tile.getMilked())
 				{
-					if (!par5EntityPlayer.inventory.addItemStackToInventory(LoadIC2Plugin.IC2MugCoffeeMilk))
+					if (!par5EntityPlayer.inventory.addItemStackToInventory(LoadIC2Plugin.IC2MugCoffeeMilk.copy()))
     	    		{
-    	    			par5EntityPlayer.entityDropItem(LoadIC2Plugin.IC2MugCoffeeMilk, 1);
+    	    			par5EntityPlayer.entityDropItem(LoadIC2Plugin.IC2MugCoffeeMilk.copy(), 1);
     	    		}
 				}
 				else
 				{
-					if (!par5EntityPlayer.inventory.addItemStackToInventory(LoadIC2Plugin.IC2MugCoffee))
+					if (!par5EntityPlayer.inventory.addItemStackToInventory(LoadIC2Plugin.IC2MugCoffee.copy()))
     	    		{
-    	    			par5EntityPlayer.entityDropItem(LoadIC2Plugin.IC2MugCoffee, 1);
+    	    			par5EntityPlayer.entityDropItem(LoadIC2Plugin.IC2MugCoffee.copy(), 1);
     	    		}
 				}
 				
 				tile.setRemainByte((byte)(remain - 1));
 				if ((remain - 1) == 0){
-    				tile.setID((byte)0);
-    				tile.setMilk(false);
-    				tile.setItemStack(null);
-    				tile.setTexture(null);
-    				tile.markDirty();
+    				tile.clearTile();
     			}
     			
     			par1World.playSoundAtEntity(par5EntityPlayer, "random.pop", 0.4F, 1.8F);
@@ -205,7 +195,6 @@ public class BlockTeaMakerNext extends BlockContainer{
         		{
         			AMTLogger.debugInfo("milk -> milk_drink");
         			tile.setMilk(true);
-        			tile.setItemStack(null);
 					tile.setItemStack(new ItemStack(itemstack.getItem(), 1, itemstack.getItemDamage()));
 					tile.setRemainByte((byte)(3 + par1World.rand.nextInt(3)));
 					tile.markDirty();
@@ -220,7 +209,7 @@ public class BlockTeaMakerNext extends BlockContainer{
         		}
         		else //牛乳以外
         		{
-        			if (itemstack.getItem() == Items.milk_bucket) //牛乳バケツを持っている
+        			if (!tile.getMilked() && itemstack.getItem() == Items.milk_bucket) //牛乳バケツを持っている
         			{
         				AMTLogger.debugInfo("drink -> milk_drink");
         				

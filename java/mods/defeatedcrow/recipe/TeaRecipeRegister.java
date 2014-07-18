@@ -9,12 +9,14 @@ import mods.defeatedcrow.api.recipe.ITeaRecipeRegister;
 import mods.defeatedcrow.api.recipe.RecipeRegisterManager;
 import mods.defeatedcrow.common.AMTLogger;
 
-public class TeaRecipeRegister extends RecipeRegisterManager implements ITeaRecipeRegister{
+public class TeaRecipeRegister implements ITeaRecipeRegister{
 	
-	public static final TeaRecipeRegister INSTANCE = new TeaRecipeRegister();
-	private final List<TeaRecipe> recipes = new ArrayList<TeaRecipe>();
+	private static List<TeaRecipe> recipes;
 	
-	private TeaRecipeRegister(){}
+	public TeaRecipeRegister()
+	{
+		this.recipes = new ArrayList<TeaRecipe>();
+	}
 
 	@Override
 	public List<TeaRecipe> getRecipeList() {
@@ -23,7 +25,7 @@ public class TeaRecipeRegister extends RecipeRegisterManager implements ITeaReci
 	
 	public ITeaRecipeRegister instance()
 	{
-		return this.INSTANCE;
+		return RecipeRegisterManager.teaRecipe;
 	}
 
 	@Override

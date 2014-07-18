@@ -126,7 +126,7 @@ public class ContainerIceMaker extends Container {
 			//スロット番号が0、1でない時
 			else if (par2 != 1 && par2 != 0)
 			{
-				if (IceRecipeRegister.INSTANCE.getRecipe(itemstack1) != null)
+				if (RecipeRegisterManager.iceRecipe.getRecipe(itemstack1) != null)
 				{
 					//アイテムの移動(スロット0～1へ)
 					if (!this.mergeItemStack(itemstack1, 0, 1, false))

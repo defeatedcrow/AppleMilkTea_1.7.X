@@ -14,9 +14,9 @@
     "name":"Apple&Milk&Tea!",
     "url":"http://forum.minecraftuser.jp/viewtopic.php?f=13&t=17657",
     "updateUrl":"",
-    "version":"1.7.2_1.1a",
+    "version":"1.7.10_1.1a",
     "requiredMods":[
-      "Minecraft Forge1.6.2 10.12.2.1121+, PotionExtention1.0.1+"
+      "Minecraft Forge1.6.2 10.12.2.1180+, PotionExtention1.0.1+"
     ]
   }
 ]

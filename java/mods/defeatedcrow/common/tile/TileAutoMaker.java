@@ -1,5 +1,7 @@
 package mods.defeatedcrow.common.tile;
 
+import mods.defeatedcrow.api.recipe.ITeaRecipe;
+import mods.defeatedcrow.api.recipe.RecipeRegisterManager;
 import mods.defeatedcrow.common.DCsAppleMilk;
 import mods.defeatedcrow.common.block.BlockAutoMaker;
 import mods.defeatedcrow.handler.Util;
@@ -241,7 +243,7 @@ public class TileAutoMaker extends TileEntity implements IInventory
     
     private boolean isTeaMaterial(ItemStack input)
     {
-    	TeaRecipe recipe = TeaRecipeRegister.INSTANCE.getRecipe(input);
+    	ITeaRecipe recipe = RecipeRegisterManager.teaRecipe.getRecipe(input);
     	return recipe != null;
     }
 

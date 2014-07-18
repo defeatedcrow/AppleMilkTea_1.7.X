@@ -249,8 +249,11 @@ public class DCsAppleMilk{
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event)
 	{
-		
+		//前提MODの導入確認ログ
 		(new RequiredCoreModChecker()).coreModCheck();
+		
+		//APIのインスタンス生成
+		RegisterManager.load();
 		
 		//Configuration setting
 		//コンフィグを生成する

@@ -14,9 +14,10 @@ public class PotionSuffocation extends Potion{
 	@Override
 	public void performEffect(EntityLivingBase par1EntityLivingBase, int par2)
     {
-		if (par1EntityLivingBase.getHealth() > 1.0F)
+		if (par2 > 0 && par1EntityLivingBase.getHealth() > 1.0F)
         {
-            par1EntityLivingBase.attackEntityFrom(DamageSource.inWall, 1.0F);
+			float damage = par2 / 2;
+            par1EntityLivingBase.attackEntityFrom(DamageSource.inWall, damage);
         }
     }
 	

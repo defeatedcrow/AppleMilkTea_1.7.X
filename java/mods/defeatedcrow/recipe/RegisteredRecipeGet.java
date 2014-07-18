@@ -16,7 +16,7 @@ public class RegisteredRecipeGet{
 	
 	public void setRecipeList() {
 		
-		for (TeaRecipe recipe : TeaRecipeRegister.INSTANCE.getRecipeList()) {
+		for (ITeaRecipe recipe : RecipeRegisterManager.teaRecipe.getRecipeList()) {
 			ItemStack input = recipe.getInput();
 			ItemStack output = recipe.getOutput();
 			
@@ -25,7 +25,7 @@ public class RegisteredRecipeGet{
 			}
 		}
 		
-		for (IceRecipe recipe : IceRecipeRegister.INSTANCE.getRecipeList()) {
+		for (IIceRecipe recipe : RecipeRegisterManager.iceRecipe.getRecipeList()) {
 			ItemStack input = recipe.getInput();
 			ItemStack[] output = new ItemStack[2];
 			output[0] = recipe.getOutput();

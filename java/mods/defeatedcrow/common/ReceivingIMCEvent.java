@@ -1,5 +1,6 @@
 package mods.defeatedcrow.common;
 
+import mods.defeatedcrow.api.recipe.RecipeRegisterManager;
 import mods.defeatedcrow.recipe.IceRecipeRegister;
 import mods.defeatedcrow.recipe.TeaRecipeRegister;
 import net.minecraft.item.ItemStack;
@@ -22,6 +23,10 @@ public class ReceivingIMCEvent {
 			else if (message.key.equals("IceMakerRecipe"))
 			{
 				receiveAddIceRecipe(event, message);
+			}
+			else if (message.key.equals("IceChargeItem"))
+			{
+				receiveAddIceCharge(event, message);
 			}
 			else
 			{
@@ -54,7 +59,7 @@ public class ReceivingIMCEvent {
 				
 				if (input != null && output != null && texture!= null)
 				{
-					TeaRecipeRegister.INSTANCE.registerCanMilk(input, output, outputMilk, texture, texture_milk);
+					RecipeRegisterManager.teaRecipe.registerCanMilk(input, output, outputMilk, texture, texture_milk);
 					flag = true;
 				}
 			}
@@ -84,7 +89,7 @@ public class ReceivingIMCEvent {
 				
 				if (input != null && output != null)
 				{
-					IceRecipeRegister.INSTANCE.registerCanLeave(input, output, container);
+					RecipeRegisterManager.iceRecipe.registerCanLeave(input, output, container);
 					flag = true;
 				}
 			}
@@ -93,6 +98,32 @@ public class ReceivingIMCEvent {
 		if (!flag)
 		{
 			AMTLogger.warn("Failed to register new IceMaker recipe with IMCMassage from " + message.getSender());
+		}
+	}
+	
+	private static void receiveAddIceCharge(IMCEvent event, IMCMessage message)
+	{
+		boolean flag = false;
+		if (message.isNBTMessage())
+		{
+			NBTTagCompound tag = message.getNBTValue();
+			if (tag.hasKey("input", 10) && tag.hasKey("amount"))
+			{
+				ItemStack input = ItemStack.loadItemStackFromNBT(tag.getCompoundTag("input"));
+				int amount = 0;
+				amount = tag.getInteger("amount");
+				
+				if (input != null && amount > 0)
+				{
+					RecipeRegisterManager.iceRecipe.registerCharger(input, amount);
+					flag = true;
+				}
+			}
+		}
+		
+		if (!flag)
+		{
+			AMTLogger.warn("Failed to register new IceMaker chageable item with IMCMassage from " + message.getSender());
 		}
 	}
 

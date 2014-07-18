@@ -3,6 +3,8 @@ package mods.defeatedcrow.common.tile;
 import com.google.common.io.ByteArrayDataInput;
 import com.google.common.io.ByteStreams;
 
+import mods.defeatedcrow.api.recipe.ITeaRecipe;
+import mods.defeatedcrow.api.recipe.RecipeRegisterManager;
 import mods.defeatedcrow.common.DCsAppleMilk;
 import mods.defeatedcrow.recipe.IceRecipeRegister;
 import mods.defeatedcrow.recipe.TeaRecipeRegister;
@@ -107,7 +109,7 @@ public class TileMakerNext extends TileEntity
     {
     	if (input != null)
     	{
-    		TeaRecipe recipe = TeaRecipeRegister.INSTANCE.getRecipe(input);
+    		ITeaRecipe recipe = RecipeRegisterManager.teaRecipe.getRecipe(input);
         	if (recipe != null)
         	{
         		this.tex = recipe.getTex();
@@ -159,20 +161,18 @@ public class TileMakerNext extends TileEntity
     	//インベントリのチェックをしている
     	if (this.input == null)
     	{
-    		this.setItemStack(null);
-    		this.setTexture(null);
-    		this.markDirty();
+    		this.clearTile();
     	}
     	
     	super.updateEntity();
 	}
     
-    public TeaRecipe getRecipe()
+    public ITeaRecipe getRecipe()
     {
     	if (this.input == null) return null;
     	if (this.input != null)
     	{
-    		TeaRecipe recipe = TeaRecipeRegister.INSTANCE.getRecipe(this.input);
+    		ITeaRecipe recipe = RecipeRegisterManager.teaRecipe.getRecipe(this.input);
     		return recipe;
     	}
     	return null;
@@ -182,7 +182,7 @@ public class TileMakerNext extends TileEntity
     {
     	if (this.input != null)
     	{
-    		TeaRecipe recipe = TeaRecipeRegister.INSTANCE.getRecipe(input);
+    		ITeaRecipe recipe = RecipeRegisterManager.teaRecipe.getRecipe(input);
     		if (recipe != null)
     		{
     			if (this.isMilk && recipe.getOutputMilk() != null)
@@ -196,5 +196,14 @@ public class TileMakerNext extends TileEntity
     		}
     	}
     	return null;
+    }
+    
+    public void clearTile()
+    {
+    	this.setItemStack(null);
+    	this.setTexture(null);
+    	this.setMilk(false);
+    	this.setRemainByte((byte) 0);
+    	this.markDirty();
     }
 }
