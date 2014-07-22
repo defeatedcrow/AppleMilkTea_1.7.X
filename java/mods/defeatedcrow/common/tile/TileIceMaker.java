@@ -438,13 +438,13 @@ public class TileIceMaker extends TileEntity implements ISidedInventory
 		int l = 1;
 		BiomeGenBase biome = this.worldObj.getBiomeGenForCoords(xCoord, zCoord);
 		
-		if (BiomeDictionary.isBiomeOfType(biome, BiomeDictionary.Type.DESERT)
+		if (BiomeDictionary.isBiomeOfType(biome, BiomeDictionary.Type.HOT)
 				|| BiomeDictionary.isBiomeOfType(biome, BiomeDictionary.Type.JUNGLE)
 				|| BiomeDictionary.isBiomeOfType(biome, Type.NETHER))
 		{
 			l = 2;
 		}
-		else if (BiomeDictionary.isBiomeOfType(biome, BiomeDictionary.Type.FROZEN))
+		else if (BiomeDictionary.isBiomeOfType(biome, BiomeDictionary.Type.COLD))
 		{
 			l = 0;
 		}

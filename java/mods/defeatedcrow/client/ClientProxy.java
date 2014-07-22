@@ -35,6 +35,12 @@ public class ClientProxy extends CommonProxy {
 	}
 	
 	@Override
+	public int addArmor(String armor)
+	{
+		return RenderingRegistry.addNewArmourRendererPrefix(armor);
+	}
+	
+	@Override
 	public void registerTileEntity()
     {
 		GameRegistry.registerTileEntity(TileTeppann.class, "TileTeppann");
@@ -61,6 +67,7 @@ public class ClientProxy extends CommonProxy {
 		ClientRegistry.registerTileEntity(TileRotaryDial.class, "TileRotaryDial", new TileEntityDialRenderer());
 		ClientRegistry.registerTileEntity(TileCocktail.class, "TileCocktail", new TileEntityCocktailRenderer());
 		ClientRegistry.registerTileEntity(TileLargeBottle.class, "TileLargeBottle", new TileEntityBottleRenderer());
+		ClientRegistry.registerTileEntity(TileEmptyBottle.class, "TileEmptyBottle", new TileEntityEmptyBottleRenderer());
 		ClientRegistry.registerTileEntity(TileCLamp.class, "TileChalcedonyLamp", new TileEntityCLampRenderer());
 		ClientRegistry.registerTileEntity(TileCordial.class, "TileCordial", new TileEntityCordialRenderer());
 		ClientRegistry.registerTileEntity(TileAlcoholCup.class, "TileAlcoholCup", new TileEntityAlcoholCupRenderer());

@@ -59,7 +59,7 @@ public class BlockBowlJP extends BlockContainer{
         {
         	if (currentMeta == 15)
         	{
-        		if (DCsAppleMilk.SuccessLoadBamboo)
+        		if (DCsAppleMilk.SuccessLoadBamboo && LoadBambooPlugin.bambooBasket != null)
         		{
         			if (!par5EntityPlayer.inventory.addItemStackToInventory(new ItemStack(LoadBambooPlugin.bambooBasket,1)))
                 	{
@@ -76,9 +76,9 @@ public class BlockBowlJP extends BlockContainer{
         	}
         	else
         	{
-        		if (!par5EntityPlayer.inventory.addItemStackToInventory(new ItemStack(this,1,currentMeta)))
+        		if (!par5EntityPlayer.inventory.addItemStackToInventory(new ItemStack(Item.getItemFromBlock(this),1,currentMeta)))
             	{
-            		par5EntityPlayer.entityDropItem(new ItemStack(this,1,currentMeta), 1);
+            		par5EntityPlayer.entityDropItem(new ItemStack(Item.getItemFromBlock(this),1,currentMeta), 1);
             	}
         	}
     		
@@ -90,7 +90,7 @@ public class BlockBowlJP extends BlockContainer{
         {
         	if (currentMeta == 15)
         	{
-        		if (DCsAppleMilk.SuccessLoadBamboo)
+        		if (DCsAppleMilk.SuccessLoadBamboo && LoadBambooPlugin.bambooBasket != null)
         		{
         			if (!par5EntityPlayer.inventory.addItemStackToInventory(new ItemStack(LoadBambooPlugin.bambooBasket,1)))
                 	{
@@ -107,9 +107,9 @@ public class BlockBowlJP extends BlockContainer{
         	}
         	else
         	{
-        		if (!par5EntityPlayer.inventory.addItemStackToInventory(new ItemStack(this,1,currentMeta)))
+        		if (!par5EntityPlayer.inventory.addItemStackToInventory(new ItemStack(Item.getItemFromBlock(this),1,currentMeta)))
             	{
-            		par5EntityPlayer.entityDropItem(new ItemStack(this,1,currentMeta), 1);
+            		par5EntityPlayer.entityDropItem(new ItemStack(Item.getItemFromBlock(this),1,currentMeta), 1);
             	}
         	}
     		

@@ -41,6 +41,7 @@ public class AddChestGen {
 		ChestGenHooks dungeon4 = ChestGenHooks.getInfo("mineshaftCorridor");
 		dungeon4.addItem(new WeightedRandomChestContent(new ItemStack(DCsAppleMilk.itemLargeBottle, 1, 20),1,1,10));
 		dungeon4.addItem(new WeightedRandomChestContent(new ItemStack(DCsAppleMilk.itemLargeBottle, 1, 21),1,1,10));
+		dungeon4.addItem(new WeightedRandomChestContent(new ItemStack(DCsAppleMilk.itemMintSeed, 1, 0),1,3,10));
 	}
 	
 }

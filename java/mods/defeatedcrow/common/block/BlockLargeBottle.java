@@ -37,7 +37,7 @@ import mods.defeatedcrow.handler.Util;
  * */
 public class BlockLargeBottle extends BlockContainer{
 	
-	private static final String[] contents = new String[] {"_empty", "_sake", "_beer", "_wine", "_gin", "_rum", "_vodka", "_whiskey",
+	private static final String[] contents = new String[] {"_shothu", "_sake", "_beer", "_wine", "_gin", "_rum", "_vodka", "_whiskey",
 		"_milk", "_milk", "_sugar", "_maple", "_juice", "_nuts", "_berryjam"};
 	
 	@SideOnly(Side.CLIENT)
@@ -339,16 +339,6 @@ public class BlockLargeBottle extends BlockContainer{
 			return this.boxTex[i];
 		}
 		
-    }
-	
-	@Override
-	@SideOnly(Side.CLIENT)
-	public void getSubBlocks(Item par1, CreativeTabs par2CreativeTabs, List par3List)
-    {
-		for(int i = 0; i < 15; ++i)//登録はするが、クリエイティブで出すと残量は1になる
-		{
-			par3List.add(new ItemStack(this, 1, i));
-		}
     }
 	
 	@Override

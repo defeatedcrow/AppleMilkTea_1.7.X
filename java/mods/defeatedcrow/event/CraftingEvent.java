@@ -70,11 +70,14 @@ public class CraftingEvent {
 				{
 					rem--;
 					if (rem < 0){
-						rem = 0;
-						type = 0;
+						rets.add(new ItemStack(DCsAppleMilk.emptyBottle, 1, 0));
 					}
-					int next = (rem << 4) + type;
-					rets.add(new ItemStack(DCsAppleMilk.itemLargeBottle, 1, next));
+					else
+					{
+						int next = (rem << 4) + type;
+						rets.add(new ItemStack(DCsAppleMilk.itemLargeBottle, 1, next));
+					}
+					
 				}
 			}
 			else if (m != null && m.getItem() == DCsAppleMilk.itemCordial) {
@@ -83,7 +86,7 @@ public class CraftingEvent {
 				{
 					rem--;
 					if (rem == 0){
-						rets.add(new ItemStack(DCsAppleMilk.itemLargeBottle, 1, 0));
+						rets.add(new ItemStack(DCsAppleMilk.emptyBottle, 1, 0));
 					}
 					else
 					{
@@ -93,7 +96,7 @@ public class CraftingEvent {
 				}
 				else
 				{
-					rets.add(new ItemStack(DCsAppleMilk.itemLargeBottle, 1, 0));
+					rets.add(new ItemStack(DCsAppleMilk.emptyBottle, 1, 0));
 				}
 			}
 			else if (m != null && m.getItem() == DCsAppleMilk.DCgrater)

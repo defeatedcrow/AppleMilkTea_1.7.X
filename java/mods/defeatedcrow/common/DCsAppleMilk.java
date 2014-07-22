@@ -55,7 +55,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 @Mod(
 		modid = "DCsAppleMilk",
 		name = "Apple&Milk&Tea!",
-		version = "1.7.10_1.1a",
+		version = "1.7.10_2.0_alpha1",
 		dependencies = "after:IC2;after:Thaumcraft;after:BambooMod;after:pamharvestcraft;after:Forestry;after:mod_ecru_MapleTree"
 		)
 //required-after:SampleCore;
@@ -93,6 +93,7 @@ public class DCsAppleMilk{
 	public static Block  bowlJP;
 	public static Block  foodPlate;
 	public static Block  chocoBlock;
+	public static Block  emptyBottle;
 	public static Block  largeBottle;
 	public static Block  cordial;
 	//コンテナ
@@ -149,6 +150,9 @@ public class DCsAppleMilk{
 	public static Item  princessClam;
 	public static Item  itemCordial;
 	public static Item  itemMintSeed;
+	
+	public static Item  monocle;
+	public static Item  onixSword;
 	
 	//ポーションのインスタンス
 	public static Potion Immunization;
@@ -352,6 +356,8 @@ public class DCsAppleMilk{
 		MinecraftForge.EVENT_BUS.register(new EntityMoreDropEvent());
 		//骨粉効果
 		MinecraftForge.EVENT_BUS.register(new DCsBonemealEvent());
+		//モノクルの鉱石辞書名確認機能
+		MinecraftForge.EVENT_BUS.register(new ShowOreNameEvent());
 		//クラフトで耐久が減るアイテムの登録
 		FMLCommonHandler.instance().bus().register(new CraftingEvent());
 		

@@ -30,7 +30,7 @@ import net.minecraftforge.common.IShearable;
 
 public class ItemLargeBottle extends Item{
 	
-	private static final String[] contents = new String[] {"empty", "sake", "beer", "wine", "gin", "rum", "vodka", "whiskey",
+	private static final String[] contents = new String[] {"shothu", "sake", "beer", "wine", "gin", "rum", "vodka", "whiskey",
 		"milk", "soy", "sugar", "maple", "honey", "nuts", "berryjam"};
 	
 	private boolean repair;
@@ -230,11 +230,9 @@ public class ItemLargeBottle extends Item{
 		super.addInformation(par1ItemStack, par2EntityPlayer, par3List, par4);
 		int l = par1ItemStack.getItemDamage();
 		int type = checkType(l);
-		int rem = checkRemain(l);
-		if (l < 0) l = 0;
-		if (l > 0) rem++;
+		int rem = checkRemain(l) + 1;
 		par3List.add(new String("type: " + contents[type]));
-		if (l != 0) par3List.add(new String("count: " + rem));
+		par3List.add(new String("count: " + rem));
 	}
 	
 	private int checkType(int par1)
@@ -271,8 +269,7 @@ public class ItemLargeBottle extends Item{
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void getSubItems(Item par1, CreativeTabs par2CreativeTabs, List par3List) {
-		par3List.add(new ItemStack(this, 1, 0));
-		for (int i = 1 ; i < 8 ; i++) {
+		for (int i = 0 ; i < 8 ; i++) {
 			par3List.add(new ItemStack(this, 1, 48 + i));
 		}
 		for (int i = 8 ; i < 15 ; i++) {

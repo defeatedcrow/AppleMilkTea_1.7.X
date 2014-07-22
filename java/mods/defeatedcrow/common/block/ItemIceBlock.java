@@ -57,10 +57,10 @@ public class ItemIceBlock extends EdibleItemBlock{
     			par3EntityPlayer.addPotionEffect(new PotionEffect(Potion.fireResistance.id, 600, 0));
     			par3EntityPlayer.triggerAchievement(AchievementRegister.eatIcecream);
     		}
-    		else if (BiomeDictionary.isBiomeOfType(biome, Type.FROZEN)) {
+    		else if (BiomeDictionary.isBiomeOfType(biome, Type.COLD)) {
     			par3EntityPlayer.addPotionEffect(new PotionEffect(Potion.hunger.id, 100, 0));
     		}
-    		else if (BiomeDictionary.isBiomeOfType(biome, Type.JUNGLE) || BiomeDictionary.isBiomeOfType(biome, Type.DESERT)) {
+    		else if (BiomeDictionary.isBiomeOfType(biome, Type.JUNGLE) || BiomeDictionary.isBiomeOfType(biome, Type.HOT)) {
     			par3EntityPlayer.addPotionEffect(new PotionEffect(Potion.field_76443_y.id, 1, 2));
     		}
 			
