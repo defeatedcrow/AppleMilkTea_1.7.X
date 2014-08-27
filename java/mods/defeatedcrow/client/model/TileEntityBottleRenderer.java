@@ -20,7 +20,7 @@ public class TileEntityBottleRenderer extends TileEntitySpecialRenderer
     private static ResourceLocation bottleTex = new ResourceLocation("defeatedcrow:textures/entity/largebottle.png");
     private static ResourceLocation glassTex = new ResourceLocation("defeatedcrow:textures/blocks/blueglass.png");
     private static ResourceLocation contentsTex = new ResourceLocation("defeatedcrow:textures/blocks/contents_milk.png");
-    private static final String[] type = new String[] {"_shothu", "_sake", "_beer", "_wine", "_gin", "_rum", "_vodka", "_whiskey"};
+    private static final String[] type = new String[] {"", "_sake", "_beer", "_wine", "_gin", "_rum", "_vodka", "_whiskey"};
     private static final String[] canisterType = new String[] {"_milk", "_milk", "_sugar", "_maple", "_juice", "_nuts", "_berryjam"};
     public static TileEntityBottleRenderer bottleRenderer;
     private ModelLargeBottle bottleModel = new ModelLargeBottle();

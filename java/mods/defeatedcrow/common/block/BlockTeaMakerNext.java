@@ -28,6 +28,7 @@ import mods.defeatedcrow.api.recipe.RecipeRegisterManager;
 import mods.defeatedcrow.common.*;
 import mods.defeatedcrow.common.tile.TileMakerNext;
 import mods.defeatedcrow.plugin.LoadIC2Plugin;
+import mods.defeatedcrow.plugin.LoadModHandler;
 import mods.defeatedcrow.recipe.*;
 import mods.defeatedcrow.recipe.TeaRecipeRegister.TeaRecipe;
 
@@ -273,17 +274,6 @@ public class BlockTeaMakerNext extends BlockContainer{
                 }
     			return true;
     		}
-        	else if(DCsAppleMilk.SuccessLoadIC2 && LoadIC2Plugin.IC2Coffeepowder != null && itemstack.getItem() == LoadIC2Plugin.IC2Coffeepowder.getItem())
-        	{
-        		tile.setItemStack(new ItemStack(DCsAppleMilk.gratedApple, 1, 3));//かわりに当MODのコーヒー粉が突っ込まれる
-    			tile.setRemainByte((byte)(3 + par1World.rand.nextInt(3))); //3～5杯
-    			par1World.playSoundAtEntity(par5EntityPlayer, "random.pop", 0.4F, 1.8F);
-    			if (!par5EntityPlayer.capabilities.isCreativeMode && --itemstack.stackSize <= 0)
-                {
-                    par5EntityPlayer.inventory.setInventorySlotContents(par5EntityPlayer.inventory.currentItem, (ItemStack)null);
-                }
-    			return true;
-        	}
         	else
         	{
         		return false;
@@ -324,17 +314,48 @@ public class BlockTeaMakerNext extends BlockContainer{
     			par2EntityPlayer.entityDropItem(new ItemStack(Items.potionitem, 1, 0), 1);
     		}
 		}
-		else if (DCsAppleMilk.SuccessLoadIC2 && LoadIC2Plugin.IC2Cell != null && itemstack.getItem() == LoadIC2Plugin.IC2Cell.getItem())
+		else if (DCsAppleMilk.SuccessLoadIC2 && LoadIC2Plugin.IC2Cell != null && ID == LoadIC2Plugin.IC2Cell.getItem())
 		{
 			if (!par2EntityPlayer.capabilities.isCreativeMode && --itemstack.stackSize <= 0)
             {
                 par2EntityPlayer.inventory.setInventorySlotContents(par2EntityPlayer.inventory.currentItem, (ItemStack)null);
             }
 			
-			if (!par2EntityPlayer.inventory.addItemStackToInventory(LoadIC2Plugin.IC2WaterCell))
+			if (!par2EntityPlayer.inventory.addItemStackToInventory(LoadIC2Plugin.IC2WaterCell.copy()))
     		{
-    			par2EntityPlayer.entityDropItem(LoadIC2Plugin.IC2WaterCell, 1);
+    			par2EntityPlayer.entityDropItem(LoadIC2Plugin.IC2WaterCell.copy(), 1);
     		}
+		}
+		else if (DCsAppleMilk.SuccessLoadFFM)
+		{
+			ItemStack ret = null;
+			if (LoadModHandler.matchItem("emptyCapsule", itemstack) && LoadModHandler.getItem("waterCapsule") != null)
+			{
+				ret = LoadModHandler.getItem("waterCapsule").copy();
+			}
+			
+			if (LoadModHandler.matchItem("emptyCan", itemstack) && LoadModHandler.getItem("waterCan") != null)
+			{
+				ret = LoadModHandler.getItem("waterCan").copy();
+			}
+			
+			if (LoadModHandler.matchItem("emptyRefractory", itemstack) && LoadModHandler.getItem("waterRefractory") != null)
+			{
+				ret = LoadModHandler.getItem("waterRefractory").copy();
+			}
+			
+			if (ret != null)
+			{
+				if (!par2EntityPlayer.capabilities.isCreativeMode && --itemstack.stackSize <= 0)
+	            {
+	                par2EntityPlayer.inventory.setInventorySlotContents(par2EntityPlayer.inventory.currentItem, (ItemStack)null);
+	            }
+				
+				if (!par2EntityPlayer.inventory.addItemStackToInventory(ret));
+	    		{
+	    			par2EntityPlayer.entityDropItem(ret, 1);
+	    		}
+			}
 		}
 	}
 	
@@ -344,6 +365,12 @@ public class BlockTeaMakerNext extends BlockContainer{
 		if (itemstack.getItem() == Items.bucket) flag = true;
 		else if (itemstack.getItem() == Items.glass_bottle) flag = true;
 		else if (DCsAppleMilk.SuccessLoadIC2 && LoadIC2Plugin.IC2Cell != null && itemstack.getItem() == LoadIC2Plugin.IC2Cell.getItem()) flag = true;
+		else if (DCsAppleMilk.SuccessLoadFFM)
+		{
+			flag = LoadModHandler.matchItem("emptyCapsule", itemstack)
+					|| LoadModHandler.matchItem("emptyCan", itemstack)
+					|| LoadModHandler.matchItem("emptyRefractory", itemstack);
+		}
 		else flag = false;
 		
 		return flag;

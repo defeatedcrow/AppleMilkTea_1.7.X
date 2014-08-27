@@ -55,7 +55,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 @Mod(
 		modid = "DCsAppleMilk",
 		name = "Apple&Milk&Tea!",
-		version = "1.7.10_2.0_alpha1",
+		version = "1.7.10_1.2a",
 		dependencies = "after:IC2;after:Thaumcraft;after:BambooMod;after:pamharvestcraft;after:Forestry;after:mod_ecru_MapleTree"
 		)
 //required-after:SampleCore;
@@ -71,6 +71,7 @@ public class DCsAppleMilk{
 	
 	//クリエイティブタブの追加
 	public static final CreativeTabs applemilk = new CreativeTabDCAM("applemilk");
+	public static final CreativeTabs applemilkfood = new CreativeTabDCFoods("applemilkfood");
 	
 	//ブロックのインスタンス
 	//ツール
@@ -93,7 +94,6 @@ public class DCsAppleMilk{
 	public static Block  bowlJP;
 	public static Block  foodPlate;
 	public static Block  chocoBlock;
-	public static Block  emptyBottle;
 	public static Block  largeBottle;
 	public static Block  cordial;
 	//コンテナ
@@ -151,9 +151,6 @@ public class DCsAppleMilk{
 	public static Item  itemCordial;
 	public static Item  itemMintSeed;
 	
-	public static Item  monocle;
-	public static Item  onixSword;
-	
 	//ポーションのインスタンス
 	public static Potion Immunization;
 	public static Potion prvExplode;
@@ -191,6 +188,7 @@ public class DCsAppleMilk{
 	public static boolean SuccessLoadDart = false;
 	public static boolean SuccessLoadTE3 = false;
 	public static boolean SuccessLoadWa = false;
+	public static boolean SuccessLoadFFM = false;
 	
 	//内部処理用
 	public static boolean fanc_78842dcs = false;
@@ -308,7 +306,6 @@ public class DCsAppleMilk{
 		//Registering Entity
 		//Entityの登録
 		if (DCsConfig.entityIdMelon == 0) DCsConfig.entityIdMelon = EntityRegistry.findGlobalUniqueEntityId();
-		EntityRegistry.registerGlobalEntityID(EntityMelonBomb.class, "compressedMelon", DCsConfig.entityIdMelon);
 		EntityRegistry.registerModEntity(EntityMelonBomb.class, "compressedMelon", DCsConfig.entityIdMelon, this, 250, 5, true);
 		
 		//Villagerの登録
@@ -356,8 +353,6 @@ public class DCsAppleMilk{
 		MinecraftForge.EVENT_BUS.register(new EntityMoreDropEvent());
 		//骨粉効果
 		MinecraftForge.EVENT_BUS.register(new DCsBonemealEvent());
-		//モノクルの鉱石辞書名確認機能
-		MinecraftForge.EVENT_BUS.register(new ShowOreNameEvent());
 		//クラフトで耐久が減るアイテムの登録
 		FMLCommonHandler.instance().bus().register(new CraftingEvent());
 		
@@ -463,6 +458,21 @@ public class DCsAppleMilk{
 	        }
 	        catch (Exception e) {
 	        	AMTLogger.failLoadingModInfo("IC2");
+	          e.printStackTrace(System.err);
+	        }
+	    }
+	    
+	    if (Loader.isModLoaded("Forestry"))
+	    {
+	    	AMTLogger.loadingModInfo("Forestry");
+	    	try
+	        {
+	          this.SuccessLoadFFM = true;
+	          (new LoadForestryPlugin()).load();
+	          AMTLogger.loadedModInfo("Forestry");
+	        }
+	        catch (Exception e) {
+	        	AMTLogger.failLoadingModInfo("Forestry");
 	          e.printStackTrace(System.err);
 	        }
 	    }
@@ -580,21 +590,21 @@ public class DCsAppleMilk{
 //	        }
 //	    }
 	    
-	    if (Loader.isModLoaded("SextiarySector"))
-	    {
-	    	AMTLogger.loadingModInfo("SextiarySector");
-	    	try
-	        {
-	          this.SuccessLoadSSector = true;
-	          (new LoadSSectorPlugin()).load();
-	          AMTLogger.loadedModInfo("SextiarySector");
-	          
-	        }
-	        catch (Exception e) {
-	        	AMTLogger.failLoadingModInfo("SextiarySector");
-	          e.printStackTrace(System.err);
-	        }
-	    }
+//	    if (Loader.isModLoaded("SextiarySector"))
+//	    {
+//	    	AMTLogger.loadingModInfo("SextiarySector");
+//	    	try
+//	        {
+//	          this.SuccessLoadSSector = true;
+//	          (new LoadSSectorPlugin()).load();
+//	          AMTLogger.loadedModInfo("SextiarySector");
+//	          
+//	        }
+//	        catch (Exception e) {
+//	        	AMTLogger.failLoadingModInfo("SextiarySector");
+//	          e.printStackTrace(System.err);
+//	        }
+//	    }
 	    
 	    if (Loader.isModLoaded("Growthcraft|Rice"))
 	    {
@@ -690,20 +700,20 @@ public class DCsAppleMilk{
 	        }
 	    }
 	    
-	    if (Loader.isModLoaded("kegare.sugiforest"))
-	    {
-	    	AMTLogger.loadingModInfo("kegare.sugiforest");
-	    	try
-	        {
-	          this.SuccessLoadSugi = true;
-	          (new LoadModHandler()).loadSugi();
-	          AMTLogger.loadedModInfo("kegare.sugiforest");
-	        }
-	        catch (Exception e) {
-	        	AMTLogger.failLoadingModInfo("kegare.sugiforest");
-	          e.printStackTrace(System.err);
-	        }
-	    }
+//	    if (Loader.isModLoaded("kegare.sugiforest"))
+//	    {
+//	    	AMTLogger.loadingModInfo("kegare.sugiforest");
+//	    	try
+//	        {
+//	          this.SuccessLoadSugi = true;
+//	          (new LoadModHandler()).loadSugi();
+//	          AMTLogger.loadedModInfo("kegare.sugiforest");
+//	        }
+//	        catch (Exception e) {
+//	        	AMTLogger.failLoadingModInfo("kegare.sugiforest");
+//	          e.printStackTrace(System.err);
+//	        }
+//	    }
 	    
 	    if (Loader.isModLoaded("DartCraft"))
 	    {
@@ -757,8 +767,7 @@ public class DCsAppleMilk{
 	    	try
 	        {
 	          this.SuccessLoadWa = true;
-	          (new LoadCraftGuidePlugin()).load();;
-	          AMTLogger.loadedModInfo("craftguide");
+	          (new LoadCraftGuidePlugin()).load();
 	        }
 	        catch (Exception e) {
 	        	AMTLogger.failLoadingModInfo("craftguide");

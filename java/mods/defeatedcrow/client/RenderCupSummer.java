@@ -22,6 +22,7 @@ public class RenderCupSummer implements ISimpleBlockRenderingHandler{
 	private IIcon boxIIcon;
 	private IIcon contentsIIcon;
 	private IIcon waterIIcon;
+	private IIcon contents2;
 
 	@Override
 	public void renderInventoryBlock(Block block, int metadata, int modelID,
@@ -30,8 +31,10 @@ public class RenderCupSummer implements ISimpleBlockRenderingHandler{
 		int meta = metadata;
 		if (meta > 13)meta = 13;
 		this.boxIIcon = DCsAppleMilk.emptyCup.getBlockTextureFromSide(1);
+		this.boxIIcon = DCsAppleMilk.emptyCup.getBlockTextureFromSide(1);
 		this.contentsIIcon = DCsAppleMilk.teacupBlock.getIcon(0, meta);
 		this.waterIIcon = Blocks.water.getBlockTextureFromSide(1);
+		this.contents2 = DCsAppleMilk.teaCup2.getIcon(0, meta);
 		
 		if (modelID == this.getRenderId())
 		{
@@ -44,13 +47,15 @@ public class RenderCupSummer implements ISimpleBlockRenderingHandler{
 			renderInvCuboid(renderer, block,  10.0F/16.0F, 2.0F/16.0F, 6.0F/16.0F, 11.0F/16.0F, 9.0F/16.0F, 10.0F/16.0F,  this.boxIIcon);
 			
 			//contents
-			if (meta == 0 || block == DCsAppleMilk.emptyCup)
+			if (block == DCsAppleMilk.emptyCup)
 			{
 				renderInvCuboid(renderer, block,  6.0F/16.0F, 2.0F/16.0F, 6.0F/16.0F, 10.0F/16.0F, 7.0F/16.0F, 10.0F/16.0F,  this.waterIIcon);
 			}
-			else
-			{
+			else if(block == DCsAppleMilk.teacupBlock) {
 				renderInvCuboid(renderer, block,  6.0F/16.0F, 2.0F/16.0F, 6.0F/16.0F, 10.0F/16.0F, 7.0F/16.0F, 10.0F/16.0F,  this.contentsIIcon);
+			}
+			else {
+				renderInvCuboid(renderer, block,  6.0F/16.0F, 2.0F/16.0F, 6.0F/16.0F, 10.0F/16.0F, 7.0F/16.0F, 10.0F/16.0F,  this.contents2);
 			}
 			
 		}
@@ -64,6 +69,7 @@ public class RenderCupSummer implements ISimpleBlockRenderingHandler{
 		int meta = world.getBlockMetadata(x, y, z);
 		this.boxIIcon = DCsAppleMilk.emptyCup.getBlockTextureFromSide(1);
 		this.contentsIIcon = DCsAppleMilk.teacupBlock.getIcon(0, meta);
+		this.contents2 = DCsAppleMilk.teaCup2.getIcon(0, meta);
 		this.waterIIcon = Blocks.water.getBlockTextureFromSide(1);
 		
 		if (modelId == this.getRenderId())
@@ -103,9 +109,16 @@ public class RenderCupSummer implements ISimpleBlockRenderingHandler{
 				renderer.setRenderBoundsFromBlock(block);
 				renderer.renderStandardBlock(block, x, y, z);
 			}
-			else
+			else if (block == DCsAppleMilk.teacupBlock)
 			{
 				renderer.setOverrideBlockTexture(this.contentsIIcon);
+				block.setBlockBounds(6.0F/16.0F, 1.0F/16.0F, 6.0F/16.0F, 10.0F/16.0F, 6.0F/16.0F, 10.0F/16.0F);
+				renderer.setRenderBoundsFromBlock(block);
+				renderer.renderStandardBlock(block, x, y, z);
+			}
+			else
+			{
+				renderer.setOverrideBlockTexture(this.contents2);
 				block.setBlockBounds(6.0F/16.0F, 1.0F/16.0F, 6.0F/16.0F, 10.0F/16.0F, 6.0F/16.0F, 10.0F/16.0F);
 				renderer.setRenderBoundsFromBlock(block);
 				renderer.renderStandardBlock(block, x, y, z);

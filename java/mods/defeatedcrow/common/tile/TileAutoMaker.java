@@ -143,17 +143,15 @@ public class TileAutoMaker extends TileEntity implements IInventory
     			if (this.isAutoMode())
     			{
     				boolean flag = false;
-//    				int id = this.isTeaMaterial(this.getItemstack());
-//    				TileMakerNext tile = (TileMakerNext)this.worldObj.getTileEntity(xCoord, (yCoord - 1), zCoord);
-//        			
-//        			if (tile != null && id > 1 && this.updateBlock() && this.reduceItemStack())
-//        			{
-//        				flag = true;
-//        				this.markDirty();
-//        				tile.markDirty();
-//        				this.setCoolTime(8);
-//        			}
-//    				
+    				boolean i = this.isTeaMaterial(this.getItemstack());
+    				TileMakerNext tile = (TileMakerNext)this.worldObj.getTileEntity(xCoord, (yCoord - 1), zCoord);
+        			
+        			if (tile != null && i && this.updateBlock())
+        			{
+        				flag = true;
+        				this.setCoolTime(8);
+        			}
+    				
     				return flag;
     			}
     			else
@@ -176,14 +174,34 @@ public class TileAutoMaker extends TileEntity implements IInventory
     private boolean updateBlock() {
     	
 		boolean flag = false;
-		Block under = this.worldObj.getBlock(xCoord, yCoord -1, zCoord);
-    	if (this.worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, 1, 3))
-    	{
-//    		this.worldObj.notifyBlocksOfNeighborChange(this.xCoord, this.yCoord, this.zCoord, this.getBlockType());
-//        	this.worldObj.notifyBlockOfNeighborChange(this.xCoord, this.yCoord - 1, this.zCoord, under);
-        	flag = true;
-    	}
-    	
+		TileMakerNext target = (TileMakerNext) this.worldObj.getTileEntity(xCoord, yCoord - 1, zCoord);
+		
+		if (target != null)
+		{
+			ItemStack items = this.getItemstack();
+			ItemStack markerItem = target.getItemStack();
+			Block under = this.worldObj.getBlock(xCoord, yCoord - 1, zCoord);
+			
+			if (items != null && markerItem == null)
+			{
+				ITeaRecipe recipe = RecipeRegisterManager.teaRecipe.getRecipe(items);
+				
+				if (recipe != null)
+				{
+					this.reduceItemStack();
+					this.markDirty();
+					
+					target.setItemStack(new ItemStack(items.getItem(), 1, items.getItemDamage()));
+					target.setRemainByte((byte)(3));
+					target.markDirty();
+					this.worldObj.markBlockForUpdate(xCoord, yCoord -1, zCoord);
+					this.worldObj.notifyBlockChange(xCoord, yCoord -1, zCoord, under);
+					
+					this.worldObj.playSoundEffect(xCoord, yCoord, zCoord, "random.pop", 0.4F, 1.8F);
+				}
+				
+			}
+		}
     	return flag;
     	
 	}

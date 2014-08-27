@@ -67,7 +67,7 @@ public class VillagerCafe implements IVillageTradeHandler {
 			recipeList.add(new MerchantRecipe(new ItemStack(DCsAppleMilk.EXItems, 3, 10), new ItemStack(Items.emerald, 1)));
 			recipeList.add(new MerchantRecipe(new ItemStack(Items.bowl, 3, 0), new ItemStack(Items.emerald, 1)));
 			recipeList.add(new MerchantRecipe(new ItemStack(DCsAppleMilk.emptyCup, 1, 0), new ItemStack(Items.emerald, 1)));
-			recipeList.add(new MerchantRecipe(new ItemStack(DCsAppleMilk.emptyBottle, 1, 0), new ItemStack(Items.emerald, 1)));
+			recipeList.add(new MerchantRecipe(new ItemStack(DCsAppleMilk.itemLargeBottle, 1, 0), new ItemStack(Items.emerald, 1)));
 			
 		}
 		

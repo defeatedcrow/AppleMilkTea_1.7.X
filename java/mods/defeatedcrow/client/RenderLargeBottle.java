@@ -30,13 +30,13 @@ public class RenderLargeBottle implements ISimpleBlockRenderingHandler{
 		
 		int meta = metadata;
 		this.capIIcon = DCsAppleMilk.blockIcecream.getBlockTextureFromSide(0);
-		this.boxIIcon = block.getIcon(1, meta);
+		this.boxIIcon = DCsAppleMilk.largeBottle.getIcon(1, meta);
 		this.woodIIcon = Blocks.planks.getBlockTextureFromSide(0);
 		
 		if (modelID == this.getRenderId())
 		{
 			if (meta < 7) {
-				this.sideIIcon = block.getIcon(0, meta);
+				this.sideIIcon = DCsAppleMilk.largeBottle.getIcon(0, meta);
 				
 				renderInvCuboid(renderer, block,  5.5F/16.0F, 0.0F/16.0F, 5.5F/16.0F, 10.5F/16.0F, 1.0F/16.0F, 10.5F/16.0F,  this.boxIIcon);
 				renderInvCuboid(renderer, block,  5.5F/16.0F, 1.0F/16.0F, 5.5F/16.0F, 10.5F/16.0F, 8.0F/16.0F, 10.5F/16.0F,  this.sideIIcon);
@@ -62,11 +62,20 @@ public class RenderLargeBottle implements ISimpleBlockRenderingHandler{
 		
 		int meta = world.getBlockMetadata(x, y, z);
 		TileLargeBottle tile = (TileLargeBottle) world.getTileEntity(x, y, z);
-		this.boxIIcon = block.getIcon(1, meta);
+		this.boxIIcon = DCsAppleMilk.largeBottle.getIcon(1, meta);
 		this.woodIIcon = Blocks.planks.getBlockTextureFromSide(0);
 		
 		if (modelId == this.getRenderId())
 		{
+			if (meta > 7) {
+				
+				renderer.setOverrideBlockTexture(this.woodIIcon);
+				block.setBlockBounds(4.0F/16.0F, 14.0F/16.0F, 4.0F/16.0F, 12.0F/16.0F, 15.0F/16.0F, 12.0F/16.0F);
+				renderer.setRenderBoundsFromBlock(block);
+				renderer.renderStandardBlock(block, x, y, z);
+				
+			}
+
 			renderer.clearOverrideBlockTexture();
 			block.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
 			renderer.setRenderBoundsFromBlock(block);

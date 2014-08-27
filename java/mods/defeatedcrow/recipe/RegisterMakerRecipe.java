@@ -122,7 +122,7 @@ public class RegisterMakerRecipe {
 				new ItemStack(DCsAppleMilk.emptyCup, 1, 0));
 		
 		RecipeRegisterManager.iceRecipe.registerCanLeave(new ItemStack(DCsAppleMilk.itemLargeBottle, 1, 1), new ItemStack(DCsAppleMilk.cocktail, 1, 1),
-				new ItemStack(DCsAppleMilk.emptyBottle, 1, 0));
+				new ItemStack(DCsAppleMilk.itemLargeBottle, 1, 0));
 		
 		RecipeRegisterManager.iceRecipe.registerCanLeave(new ItemStack(DCsAppleMilk.itemLargeBottle, 1, 17), new ItemStack(DCsAppleMilk.cocktail, 1, 1),
 				new ItemStack(DCsAppleMilk.itemLargeBottle, 1, 1));

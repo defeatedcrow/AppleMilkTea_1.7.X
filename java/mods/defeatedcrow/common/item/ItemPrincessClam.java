@@ -216,9 +216,8 @@ public class ItemPrincessClam extends Item {
 						break;
 					}
 					
-					if (world.isSideSolid(X, Y + i, Z, ForgeDirection.UP) && (world.isAirBlock(X, Y + i + 1, Z) || world.getBlock(X, Y + i + 1, Z).getMaterial() == Material.plants || world.getBlock(X, Y + i + 1, Z).getMaterial() == Material.snow)
-							&& world.isAirBlock(X, Y + i + 2, Z)
-							&& this.moonCanWarp(world, X, Y + i, Z))
+					if ((this.moonCanWarp(world, X, Y + i, Z) || world.isSideSolid(X, Y + i, Z, ForgeDirection.UP)) && (world.isAirBlock(X, Y + i + 1, Z) || world.getBlock(X, Y + i + 1, Z).getMaterial() == Material.plants || world.getBlock(X, Y + i + 1, Z).getMaterial() == Material.snow)
+							&& world.isAirBlock(X, Y + i + 2, Z))
 					{
 						y1 = Y + i;
 						flag = true;

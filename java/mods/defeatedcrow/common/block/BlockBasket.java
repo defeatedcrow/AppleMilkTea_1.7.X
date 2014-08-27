@@ -95,7 +95,7 @@ public class BlockBasket extends BlockContainer{
         		return true;
         	}
         }
-        else if (itemstack.getItem() == Item.getItemFromBlock(DCsAppleMilk.emptyBottle) && itemstack.getItemDamage() == 0)
+        else if (itemstack.getItem() == DCsAppleMilk.itemLargeBottle && itemstack.getItemDamage() == 0)
         {
         	if (currentMeta < 6 || currentMeta > 13)
         	{
@@ -128,9 +128,9 @@ public class BlockBasket extends BlockContainer{
 	
 	private void getBottle (EntityPlayer player, int meta)
 	{
-		if (!player.inventory.addItemStackToInventory(new ItemStack(DCsAppleMilk.emptyBottle, 1, 0)))
+		if (!player.inventory.addItemStackToInventory(new ItemStack(DCsAppleMilk.itemLargeBottle, 1, 0)))
     	{
-    		player.entityDropItem(new ItemStack(DCsAppleMilk.emptyBottle, 1, 0), 1.0F);
+    		player.entityDropItem(new ItemStack(DCsAppleMilk.itemLargeBottle, 1, 0), 1.0F);
     	}
 	}
 	

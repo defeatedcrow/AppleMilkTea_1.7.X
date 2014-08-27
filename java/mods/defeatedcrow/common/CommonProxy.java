@@ -42,7 +42,6 @@ public class CommonProxy implements IGuiHandler{
 		GameRegistry.registerTileEntity(TileRotaryDial.class, "TileRotaryDial");
 		GameRegistry.registerTileEntity(TileCocktail.class, "TileCocktail");
 		GameRegistry.registerTileEntity(TileLargeBottle.class, "TileLargeBottle");
-		GameRegistry.registerTileEntity(TileEmptyBottle.class, "TileEmptyBottle");
 		GameRegistry.registerTileEntity(TileCLamp.class, "TileChalcedonyLamp");
 		GameRegistry.registerTileEntity(TileCordial.class, "TileCordial");
 		GameRegistry.registerTileEntity(TileAlcoholCup.class, "TileAlcoholCup");
@@ -58,11 +57,6 @@ public class CommonProxy implements IGuiHandler{
 	public void registerRenderers()
 	{
 		
-	}
-	
-	public int addArmor(String armor)
-	{
-		return 0;
 	}
 
 	//クライアント側のワールドではないのでnullを返す。

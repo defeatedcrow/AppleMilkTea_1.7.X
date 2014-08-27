@@ -19,7 +19,7 @@ public class DCsConfig {
 	public static int potionIDPrvSuffocation = 67;
 	
 	//entity
-	public static int entityIdMelon = 0;
+	public static int entityIdMelon = 160;
 	
 	//villager関連
 	public static int villagerRecipeID = 15;

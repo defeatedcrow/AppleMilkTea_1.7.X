@@ -29,7 +29,7 @@ public class RenderKinoko implements ISimpleBlockRenderingHandler{
 		int meta = metadata;
 		this.boxIIcon = Blocks.red_mushroom_block.getIcon(10, 2);
 		this.coverIIcon1 = Blocks.red_mushroom_block.getIcon(1, 1);
-		this.coverIIcon2 = Blocks.brown_mushroom_block.getIcon(1, 1);
+		this.coverIIcon2 = Blocks.red_mushroom_block.getIcon(1, 1);
 		
 		if (modelID == this.getRenderId())
 		{
@@ -61,7 +61,7 @@ public class RenderKinoko implements ISimpleBlockRenderingHandler{
 		int meta = world.getBlockMetadata(x, y, z);
 		this.boxIIcon = Blocks.red_mushroom_block.getIcon(2, 10);
 		this.coverIIcon1 = Blocks.red_mushroom_block.getIcon(1, 1);
-		this.coverIIcon2 = Blocks.brown_mushroom_block.getIcon(1, 1);
+		this.coverIIcon2 = Blocks.red_mushroom_block.getIcon(1, 1);
 		
 		if (modelId == this.getRenderId())
 		{
